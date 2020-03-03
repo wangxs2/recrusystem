@@ -1,7 +1,7 @@
 <template>
   <div class="gongying-info">
     <div class="cur-menu-name">
-        <span>实时播报信息/供应信息</span>
+        <span>实时播报信息/供应详情</span>
     </div>
     <div class="table-search-wrapper">
       <div class="search-wrapper">

@@ -57,9 +57,9 @@
                     </template>
                     <el-menu-item-group title="">
                         <el-menu-item index="/curTimeInfo/curTime"><img src="../../assets/images/icon_2_1.png"  alt="" />实时播报</el-menu-item>
-                        <el-menu-item index="/curTimeInfo/fundInfo"><img src="../../assets/images/icon_2_2.png"  alt="" />资助信息</el-menu-item>
-                        <el-menu-item index="/curTimeInfo/purchaseDemandInfo"><img src="../../assets/images/icon_2_3.png"  alt="" />求购信息</el-menu-item>
-                        <el-menu-item index="/curTimeInfo/supplyInfo"><img src="../../assets/images/icon_2_4.png"  alt="" />供应信息</el-menu-item>
+                        <el-menu-item index="/curTimeInfo/fundInfo"><img src="../../assets/images/icon_2_2.png"  alt="" />出力进展</el-menu-item>
+                        <el-menu-item index="/curTimeInfo/purchaseDemandInfo"><img src="../../assets/images/icon_2_3.png"  alt="" />需求详情</el-menu-item>
+                        <el-menu-item index="/curTimeInfo/supplyInfo"><img src="../../assets/images/icon_2_4.png"  alt="" />供应详情</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
                 <el-menu-item index="/dataStatistic">

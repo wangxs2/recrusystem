@@ -116,21 +116,21 @@ export default new Router({
                             path: '/curTimeInfo/supplyInfo',
                             name: 'supplyInfo',
                             component: supplyInfo,
-                            curMenuName:"实时播报信息/供应信息"
+                            curMenuName:"实时播报信息/出力进展"
 
                         },
                         {
                             path: '/curTimeInfo/purchaseDemandInfo',
                             name: 'purchaseDemandInfo',
                             component: purchaseDemandInfo,
-                            curMenuName:"实时播报信息/求购信息"
+                            curMenuName:"实时播报信息/需求详情"
 
                         },
                         {
                             path: '/curTimeInfo/fundInfo',
                             name: 'fundInfo',
                             component: fundInfo,
-                            curMenuName:"实时播报信息/资助信息"
+                            curMenuName:"实时播报信息/供应详情"
                         },
                     ]
                 }, 

@@ -1,7 +1,7 @@
 <template>
   <div class="zizhu-info">
     <div class="cur-menu-name">
-        <span>实时播报信息/资助信息</span>
+        <span>实时播报信息/出力进展</span>
     </div>
     <div class="table-search-wrapper">
       <div class="search-wrapper">

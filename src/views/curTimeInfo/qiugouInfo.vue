@@ -1,7 +1,7 @@
 <template>
   <div class="qiugou-info">
     <div class="cur-menu-name">
-        <span>实时播报信息/求购信息</span>
+        <span>实时播报信息/需求详情</span>
     </div>
     <div class="table-search-wrapper">
       <div class="search-wrapper">
