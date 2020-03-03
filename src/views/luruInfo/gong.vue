@@ -50,12 +50,12 @@
           <el-table-column prop="city" label="市"></el-table-column>
           <el-table-column prop="address" label="详细地址"></el-table-column>
 
-          <el-table-column prop="address" label="所属行业领域"></el-table-column>
-          <el-table-column prop="address" label="机构类型"></el-table-column>
-          <el-table-column prop="address" label="供应人数"></el-table-column>
+          <el-table-column prop="serviceRange" label="所属行业领域"></el-table-column>
+          <el-table-column prop="type" label="机构类型"></el-table-column>
+          <el-table-column prop="detail" label="供应工种" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column prop="createTime" label="预计到岗时间"></el-table-column>
-          <el-table-column prop="createTime" label="信息链接"></el-table-column>
-          <el-table-column prop="createTime" label="具体描述"></el-table-column>
+          <el-table-column prop="sourceLink" label="信息链接"></el-table-column>
+          <el-table-column prop="descr" label="具体描述" :show-overflow-tooltip="true"></el-table-column>
 
           <el-table-column prop="linkPeople" label="联系人">
             <template slot-scope="scope">

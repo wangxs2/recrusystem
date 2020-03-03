@@ -50,13 +50,13 @@
           <el-table-column prop="city" label="市"></el-table-column>
           <el-table-column prop="address" label="详细地址"></el-table-column>
 
-          <el-table-column prop="address" label="出力范围"></el-table-column>
+          <el-table-column prop="serviceType" label="出力范围"></el-table-column>
           <el-table-column prop="serviceRange" label="服务覆盖范围"></el-table-column>
           <el-table-column prop="startTime" label="起始日期"></el-table-column>
           <el-table-column prop="endTime" label="结束日期"></el-table-column>
-          <el-table-column prop="endTime" label="机构类型"></el-table-column>
-          <el-table-column prop="endTime" label="信息链接"></el-table-column>
-          <el-table-column prop="endTime" label="具体描述"></el-table-column>
+          <el-table-column prop="type" label="机构类型"></el-table-column>
+          <el-table-column prop="sourceLink" label="信息链接"></el-table-column>
+          <el-table-column prop="descr" label="具体描述" :show-overflow-tooltip="true"></el-table-column>
 
           <el-table-column prop="linkPeople" label="联系人">
             <template slot-scope="scope">
