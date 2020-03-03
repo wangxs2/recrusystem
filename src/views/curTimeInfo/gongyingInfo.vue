@@ -60,7 +60,12 @@
               <div style="padding:5px;color:#4F84FD;cursor:pointer;" class="font-left" v-if="scope.row.attachment" @click="goUrl(scope.row)">{{scope.row.attachment[0]}}</div>
             </template>
           </el-table-column>
-          <el-table-column prop="updateTime" label="更新时间"></el-table-column>
+          <el-table-column prop="updateTime" label="更新时间">
+            <template slot-scope="scope">
+              <div v-if="scope.row.updateTime">{{scope.row.updateTime.substring(0,19)}}</div>
+            </template>
+
+          </el-table-column>
           <el-table-column
             fixed="right"
             label="操作"
@@ -90,11 +95,11 @@
           <el-form-item label="标题" prop="title">
             <el-input v-model="form.title" placeholder="请输入标题"></el-input>
           </el-form-item>
-          <el-form-item label="发布时间" prop="updateTime">
+          <!-- <el-form-item label="发布时间" prop="updateTime">
             <el-date-picker v-model="form.updateTime" type="datetime" placeholder="选择发布时间" 
             value-format="yyyy-MM-dd hh:mm:ss">
             </el-date-picker>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="消息主体" prop="body">
             <el-input v-model="form.body" type="textarea" :rows="5" placeholder="请输入消息主体"></el-input>
           </el-form-item>
@@ -179,9 +184,9 @@ export default {
         title: [
           { required: true, message: '请输入标题', trigger: 'blur' },
         ],
-        updateTime: [
-          { required: true, message: '请选择发布时间', trigger: 'change' },
-        ],
+        // updateTime: [
+        //   { required: true, message: '请选择发布时间', trigger: 'change' },
+        // ],
         body: [
           { required: true, message: '请输入消息主体', trigger: 'blur' },
         ],
@@ -314,9 +319,25 @@ export default {
       })
 
     },
+    getCurrentDate() {
+       var timeStr = '-';
+       var curDate = new Date();
+       var curYear =curDate.getFullYear();  //获取完整的年份(4位,1970-????)
+       var curMonth = curDate.getMonth()+1<10?"0"+(curDate.getMonth()+1):(curDate.getMonth()+1);  //获取当前月份(0-11,0代表1月)
+       var curDay = curDate.getDate()<10?"0"+curDate.getDate():curDate.getDate();       //获取当前日(1-31)
+//        var curWeekDay = curDate.getDay();    //获取当前星期X(0-6,0代表星期天)
+       var curHour = curDate.getHours()<10?"0"+curDate.getHours():curDate.getHours();      //获取当前小时数(0-23)
+       var curMinute = curDate.getMinutes()<10?"0"+curDate.getMinutes():curDate.getMinutes();   // 获取当前分钟数(0-59)
+       var curSec =curDate.getSeconds()<10?"0"+curDate.getSeconds():curDate.getSeconds();      //获取当前秒数(0-59)
+       var Current= curYear+timeStr+curMonth+timeStr+curDay+' '+curHour+':'+curMinute+':'+curSec;
+       console.log(Current);
+       // this.datetime=Current;
+       return Current;
+    },
     submitForm(form){
       this.$refs[form].validate((valid) => {
         if (valid) {
+          this.form.updateTime=this.getCurrentDate()
           
           if (this.addOrEditPoint==0){
             this.$fetchPost("supplyInfo/insert",this.form,"json").then(res => {

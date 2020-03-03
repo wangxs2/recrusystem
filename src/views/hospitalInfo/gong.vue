@@ -32,7 +32,12 @@
           </el-table-column>
           <el-table-column prop="gaodeLon" label="经度"></el-table-column>
           <el-table-column prop="gaodeLat" label="纬度"></el-table-column>
-          <el-table-column prop="createTime" label="物资提供时间"></el-table-column>
+          <el-table-column prop="createTime" label="物资提供时间">
+            
+            <template slot-scope="scope">
+              <div v-if="scope.row.createTime">{{scope.row.createTime.substring(0,19)}}</div>
+            </template>
+          </el-table-column>
           <el-table-column prop="linkPeople" label="联系人"></el-table-column>
           <el-table-column prop="linkTel" label="联系方式"></el-table-column>
           <el-table-column prop="needsName" label="岗位清单" :show-overflow-tooltip="true"></el-table-column>
