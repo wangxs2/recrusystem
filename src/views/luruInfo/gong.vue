@@ -111,7 +111,7 @@
       </div>
     </div>
     <!-- 查看所需物资弹框 -->
-    <el-dialog title="物资详情" :visible.sync="dialogTableVisible" :close-on-click-modal="false" width="480" center custom-class="look-goods">
+    <el-dialog title="详情" :visible.sync="dialogTableVisible" :close-on-click-modal="false" width="480" center custom-class="look-goods">
       <el-table :data="gridData">
         <el-table-column property="needsName" label="主要工种"></el-table-column>
         <el-table-column property="needsNum" label="供应人数"></el-table-column>
