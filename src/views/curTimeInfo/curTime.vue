@@ -13,7 +13,7 @@
           <span>起始时间-结束时间:</span>
           <el-date-picker
             v-model="startEndTate"
-            value-format="yyyy-MM-dd hh:mm:ss"
+            value-format="yyyy-MM-dd HH:mm:ss"
             type="datetimerange"
             range-separator="-"
             start-placeholder="开始日期"

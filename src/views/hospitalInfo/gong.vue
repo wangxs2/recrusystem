@@ -10,7 +10,7 @@
           <el-date-picker
             v-model="startEndTate"
             type="datetimerange"
-            value-format="yyyy-MM-dd hh:mm:ss"
+            value-format="yyyy-MM-dd HH:mm:ss"
             range-separator="-"
             start-placeholder="开始日期"
             end-placeholder="结束日期">
@@ -35,7 +35,7 @@
           <el-table-column prop="createTime" label="物资提供时间"></el-table-column>
           <el-table-column prop="linkPeople" label="联系人"></el-table-column>
           <el-table-column prop="linkTel" label="联系方式"></el-table-column>
-          <el-table-column prop="needsName" label="物资清单" :show-overflow-tooltip="true"></el-table-column>
+          <el-table-column prop="needsName" label="岗位清单" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column prop="descr" label="备注" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column prop="name" label="操作" fixed="right" width="120">
             <template slot-scope="scope">

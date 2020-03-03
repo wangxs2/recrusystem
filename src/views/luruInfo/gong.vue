@@ -10,17 +10,17 @@
           <el-date-picker
             v-model="startEndTate"
             type="datetimerange"
-            value-format="yyyy-MM-dd hh:mm:ss"
+            value-format="yyyy-MM-dd HH:mm:ss"
             range-separator="-"
             start-placeholder="开始日期"
             end-placeholder="结束日期">
           </el-date-picker>
         </div>
         <div class="search-input">
-          <span>物品名称:</span>
-          <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择物品名称" @select="handleSelect" clearable></el-autocomplete>
+          <span>岗位名称:</span>
+          <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择岗位名称" @select="handleSelect" clearable></el-autocomplete>
         </div>
-        <div class="search-input">
+        <!-- <div class="search-input">
           <span>接受捐赠/采购情况:</span>
           <el-select v-model="acceptInfo" placeholder="请选择" clearable>
             <el-option
@@ -30,7 +30,7 @@
               :value="item.value">
             </el-option>
           </el-select>
-        </div>
+        </div> -->
         <div class="search-input search-btn" @click="search">搜索</div>
 
       </div>
@@ -319,7 +319,7 @@ export default {
       this.params={
         materialType:2,
         needName:this.goodsName,
-        status:this.acceptInfo,
+        // status:this.acceptInfo,
         page:this.page,
         pageSize:this.pageSize
       }

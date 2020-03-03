@@ -10,16 +10,16 @@
           <el-date-picker
             v-model="startEndTate"
             type="datetimerange"
-            value-format="yyyy-MM-dd hh:mm:ss"
+            value-format="yyyy-MM-dd HH:mm:ss"
             range-separator="-"
             start-placeholder="开始日期"
             end-placeholder="结束日期">
           </el-date-picker>
         </div>
-        <div class="search-input">
+        <!-- <div class="search-input">
           <span>物品名称:</span>
           <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择物品名称" @select="handleSelect" clearable></el-autocomplete>
-        </div>
+        </div> -->
         <!-- <div class="search-input">
           <span>接受捐赠/采购情况:</span>
           <el-select v-model="acceptInfo" placeholder="请选择" clearable>
@@ -52,8 +52,18 @@
 
           <el-table-column prop="serviceType" label="出力范围"></el-table-column>
           <el-table-column prop="serviceRange" label="服务覆盖范围"></el-table-column>
-          <el-table-column prop="startTime" label="起始日期"></el-table-column>
-          <el-table-column prop="endTime" label="结束日期"></el-table-column>
+          <el-table-column prop="startTime" label="起始日期">
+            <template slot-scope="scope">
+              <div v-if="scope.row.startTime">{{scope.row.startTime.substring(0,10)}}</div>
+            </template>
+
+          </el-table-column>
+          <el-table-column prop="endTime" label="结束日期">
+            <template slot-scope="scope">
+              <div v-if="scope.row.endTime">{{scope.row.endTime.substring(0,10)}}</div>
+            </template>
+
+          </el-table-column>
           <el-table-column prop="type" label="机构类型"></el-table-column>
           <el-table-column prop="sourceLink" label="信息链接"></el-table-column>
           <el-table-column prop="descr" label="具体描述" :show-overflow-tooltip="true"></el-table-column>
@@ -86,7 +96,7 @@
               <div v-else-if="scope.row.hasShow==1">已发布</div>
             </template>
           </el-table-column>
-          <el-table-column prop="name" label="查看" fixed="right" width="200">
+          <el-table-column prop="name" label="查看" fixed="right" width="100">
             <template slot-scope="scope">
               <!-- <el-button @click="clickLookGoods(scope.row)" type="text" size="small">查看提供的服务或物资</el-button> -->
               <el-button @click="clickPublish(scope.row)" type="text" size="small" v-if="scope.row.isValid==0||scope.row.isValid==3">审核</el-button>
@@ -309,7 +319,7 @@ export default {
       this.tableData=[]
       this.params={
         materialType:3,
-        needName:this.goodsName,
+        // needName:this.goodsName,
         // status:this.acceptInfo,
         page:this.page,
         pageSize:this.pageSize
