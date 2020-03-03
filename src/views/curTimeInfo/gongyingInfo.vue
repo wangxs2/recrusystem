@@ -129,7 +129,7 @@
 <script>
 import {screenHeight} from "../../utils/util"
 export default {
-  name: 'gongyingInfo',
+  name: 'supplyInfo',
   components: {
   },
   data () {

@@ -45,9 +45,9 @@
                         <span>录入信息维护</span>
                     </template>
                     <el-menu-item-group title="">
-                        <el-menu-item index="/luruInfo/xu"><img src="../../assets/images/icon_1_1.png"  alt="" />需方</el-menu-item>
-                        <el-menu-item index="/luruInfo/gong"><img src="../../assets/images/icon_1_2.png"  alt="" />供方</el-menu-item>
-                        <el-menu-item index="/luruInfo/minjianOrig"><img src="../../assets/images/icon_1_3.png"  alt="" />出力方</el-menu-item>
+                        <el-menu-item index="/luruInfo/recruitUse"><img src="../../assets/images/icon_1_1.png"  alt="" />我要用工</el-menu-item>
+                        <el-menu-item index="/luruInfo/worker"><img src="../../assets/images/icon_1_2.png"  alt="" />我有工人</el-menu-item>
+                        <el-menu-item index="/luruInfo/output"><img src="../../assets/images/icon_1_3.png"  alt="" />我要出力</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
                 <el-submenu index="/curTimeInfo">
@@ -57,9 +57,9 @@
                     </template>
                     <el-menu-item-group title="">
                         <el-menu-item index="/curTimeInfo/curTime"><img src="../../assets/images/icon_2_1.png"  alt="" />实时播报</el-menu-item>
-                        <el-menu-item index="/curTimeInfo/zizhuInfo"><img src="../../assets/images/icon_2_2.png"  alt="" />资助信息</el-menu-item>
-                        <el-menu-item index="/curTimeInfo/qiugouInfo"><img src="../../assets/images/icon_2_3.png"  alt="" />求购信息</el-menu-item>
-                        <el-menu-item index="/curTimeInfo/gongyingInfo"><img src="../../assets/images/icon_2_4.png"  alt="" />供应信息</el-menu-item>
+                        <el-menu-item index="/curTimeInfo/fundInfo"><img src="../../assets/images/icon_2_2.png"  alt="" />资助信息</el-menu-item>
+                        <el-menu-item index="/curTimeInfo/purchaseDemandInfo"><img src="../../assets/images/icon_2_3.png"  alt="" />求购信息</el-menu-item>
+                        <el-menu-item index="/curTimeInfo/supplyInfo"><img src="../../assets/images/icon_2_4.png"  alt="" />供应信息</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
                 <el-menu-item index="/dataStatistic">

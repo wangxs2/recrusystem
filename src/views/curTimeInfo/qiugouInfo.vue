@@ -128,7 +128,7 @@
 <script>
 import {screenHeight} from "../../utils/util"
 export default {
-  name: 'qiugouInfo',
+  name: 'purchaseDemandInfo',
   components: {
   },
   data () {

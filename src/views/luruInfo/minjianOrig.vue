@@ -1,7 +1,7 @@
 <template>
   <div class="minjian-orig">
     <div class="cur-menu-name">
-        <span>录入信息维护/出力方</span>
+        <span>录入信息维护/我要出力</span>
     </div>
     <div class="table-search-wrapper">
       <div class="search-wrapper">
@@ -49,9 +49,15 @@
           <el-table-column prop="province" label="省"></el-table-column>
           <el-table-column prop="city" label="市"></el-table-column>
           <el-table-column prop="address" label="详细地址"></el-table-column>
+
+          <el-table-column prop="address" label="出力范围"></el-table-column>
           <el-table-column prop="serviceRange" label="服务覆盖范围"></el-table-column>
-          <el-table-column prop="startTime" label="服务起始时间"></el-table-column>
-          <el-table-column prop="endTime" label="服务结束时间"></el-table-column>
+          <el-table-column prop="startTime" label="起始日期"></el-table-column>
+          <el-table-column prop="endTime" label="结束日期"></el-table-column>
+          <el-table-column prop="endTime" label="机构类型"></el-table-column>
+          <el-table-column prop="endTime" label="信息链接"></el-table-column>
+          <el-table-column prop="endTime" label="具体描述"></el-table-column>
+
           <el-table-column prop="linkPeople" label="联系人">
             <template slot-scope="scope">
               <div v-for="(item,i) in scope.row.linkPeopleList" :key="i" style="padding:5px;" class="font-left">{{item}}</div>
@@ -65,8 +71,6 @@
             </template>
 
           </el-table-column>
-          <el-table-column prop="detail" label="物资详情" :show-overflow-tooltip="true"></el-table-column>
-          <el-table-column prop="descr" label="备注" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column prop="isValid" label="审核状态">
             <template slot-scope="scope">
               <div v-if="scope.row.isValid==0">未审核</div>
@@ -84,7 +88,7 @@
           </el-table-column>
           <el-table-column prop="name" label="查看" fixed="right" width="200">
             <template slot-scope="scope">
-              <el-button @click="clickLookGoods(scope.row)" type="text" size="small">查看提供的服务或物资</el-button>
+              <!-- <el-button @click="clickLookGoods(scope.row)" type="text" size="small">查看提供的服务或物资</el-button> -->
               <el-button @click="clickPublish(scope.row)" type="text" size="small" v-if="scope.row.isValid==0||scope.row.isValid==3">审核</el-button>
               <!-- <el-button @click="editRow(scope.row)" type="text" size="small">编辑</el-button> -->
               <el-button @click="deleteRow(scope.row)" type="text" size="small">删除</el-button>
@@ -150,7 +154,7 @@
 <script>
 import {screenHeight,formatDate} from "../../utils/util"
 export default {
-  name: 'minjianOrig',
+  name: 'output',
   components: {
   },
   data () {

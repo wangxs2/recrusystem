@@ -1,7 +1,7 @@
 <template>
   <div class="gong">
     <div class="cur-menu-name">
-        <span>录入信息维护/供方</span>
+        <span>录入信息维护/我有工人</span>
     </div>
     <div class="table-search-wrapper">
       <div class="search-wrapper">
@@ -49,22 +49,14 @@
           <el-table-column prop="province" label="省"></el-table-column>
           <el-table-column prop="city" label="市"></el-table-column>
           <el-table-column prop="address" label="详细地址"></el-table-column>
-          <el-table-column prop="status" label="物资提供方式">
-            <template slot-scope="scope">
-              <div v-if="scope.row.status==1">接受个人捐赠</div>
-              <div v-else-if="scope.row.materistatusalType==2">接受企业捐赠</div>
-              <div v-else-if="scope.row.status==3">接受采购</div>
-              <div v-else-if="scope.row.status==4">捐赠</div>
-              <div v-else-if="scope.row.status==5">采购</div>
-            </template>
-          </el-table-column>
-          <el-table-column prop="createTime" label="物资提供时间"></el-table-column>
-          <el-table-column prop="isLogistics" label="是否需要物流">
-            <template slot-scope="scope">
-              <div v-if="scope.row.isLogistics==0">否</div>
-              <div v-else-if="scope.row.isLogistics==1">是</div>
-            </template>
-          </el-table-column>
+
+          <el-table-column prop="address" label="所属行业领域"></el-table-column>
+          <el-table-column prop="address" label="机构类型"></el-table-column>
+          <el-table-column prop="address" label="供应人数"></el-table-column>
+          <el-table-column prop="createTime" label="预计到岗时间"></el-table-column>
+          <el-table-column prop="createTime" label="信息链接"></el-table-column>
+          <el-table-column prop="createTime" label="具体描述"></el-table-column>
+
           <el-table-column prop="linkPeople" label="联系人">
             <template slot-scope="scope">
               <div v-for="(item,i) in scope.row.linkPeopleList" :key="i" style="padding:5px;" class="font-left">{{item}}</div>
@@ -78,8 +70,6 @@
             </template>
 
           </el-table-column>
-          <el-table-column prop="detail" label="物资详情" :show-overflow-tooltip="true"></el-table-column>
-          <el-table-column prop="descr" label="备注" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column prop="isValid" label="审核状态">
             <template slot-scope="scope">
               <div v-if="scope.row.isValid==0">未审核</div>
@@ -97,7 +87,7 @@
           </el-table-column>
           <el-table-column prop="name" label="查看" fixed="right" width="160">
             <template slot-scope="scope">
-              <el-button @click="clickLookGoods(scope.row)" type="text" size="small">查看提供物资</el-button>
+              <el-button @click="clickLookGoods(scope.row)" type="text" size="small">查看供应人数</el-button>
               <el-button @click="clickPublish(scope.row)" type="text" size="small" v-if="scope.row.isValid==0||scope.row.isValid==3">审核</el-button>
               <!-- <el-button @click="editRow(scope.row)" type="text" size="small">编辑</el-button> -->
               <el-button @click="deleteRow(scope.row)" type="text" size="small">删除</el-button>
@@ -122,8 +112,8 @@
     <!-- 查看所需物资弹框 -->
     <el-dialog title="物资详情" :visible.sync="dialogTableVisible" :close-on-click-modal="false" width="480" center custom-class="look-goods">
       <el-table :data="gridData">
-        <el-table-column property="needsName" label="物资名称"></el-table-column>
-        <el-table-column property="needsNum" label="物资数量"></el-table-column>
+        <el-table-column property="needsName" label="主要工种"></el-table-column>
+        <el-table-column property="needsNum" label="供应人数"></el-table-column>
         <!-- <el-table-column property="" label="物资表述">
             <template slot-scope="scope">
               <span style="color:#4F84FD;cursor:pointer;" @click="clickLookBiao(scope.row)">查看标准</span>
@@ -163,7 +153,7 @@
 <script>
 import {screenHeight,formatDate} from "../../utils/util"
 export default {
-  name: 'gong',
+  name: 'worker',
   components: {
   },
   data () {

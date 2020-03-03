@@ -130,7 +130,7 @@
 import {screenHeight} from "../../utils/util"
 import jsZip from "jszip"
 export default {
-  name: 'zizhuInfo',
+  name: 'fundInfo',
   components: {
   },
   data () {

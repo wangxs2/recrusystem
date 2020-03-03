@@ -5,14 +5,14 @@ import login from '@/views/login/index.vue'
 import layout from '@/views/layout/index.vue'
 import curTimeInfo from '@/views/curTimeInfo/index.vue'
 import curTime from '@/views/curTimeInfo/curTime.vue'
-import gongyingInfo from '@/views/curTimeInfo/gongyingInfo.vue'
-import qiugouInfo from '@/views/curTimeInfo/qiugouInfo.vue'
-import zizhuInfo from '@/views/curTimeInfo/zizhuInfo.vue'
+import supplyInfo from '@/views/curTimeInfo/gongyingInfo.vue'
+import purchaseDemandInfo from '@/views/curTimeInfo/qiugouInfo.vue'
+import fundInfo from '@/views/curTimeInfo/zizhuInfo.vue'
 import dataStatistic from '@/views/dataStatistic/index'
 import luruInfo from '@/views/luruInfo/index.vue'
-import gong from '@/views/luruInfo/gong.vue'
-import xu from '@/views/luruInfo/xu.vue'
-import minjianOrig from '@/views/luruInfo/minjianOrig.vue'
+import worker from '@/views/luruInfo/gong.vue'
+import recruitUse from '@/views/luruInfo/xu.vue'
+import output from '@/views/luruInfo/minjianOrig.vue'
 import hospitalInfo from '@/views/hospitalInfo/index.vue'
 import gong1 from '@/views/hospitalInfo/gong.vue'
 import xu1 from '@/views/hospitalInfo/xu.vue'
@@ -77,24 +77,24 @@ export default new Router({
                     curMenuName:"录入信息维护",
                     children:[
                         {
-                            path: '/luruInfo/xu',
-                            name: 'xu',
-                            component: xu,
-                            curMenuName:"录入信息维护/需方"
+                            path: '/luruInfo/recruitUse',
+                            name: 'recruitUse',
+                            component: recruitUse,
+                            curMenuName:"录入信息维护/我要用工"
 
                         },
                         {
-                            path: '/luruInfo/gong',
-                            name: 'gong',
-                            component: gong,
-                            curMenuName:"录入信息维护/供方"
+                            path: '/luruInfo/worker',
+                            name: 'worker',
+                            component: worker,
+                            curMenuName:"录入信息维护/我有工人"
 
                         },
                         {
-                            path: '/luruInfo/minjianOrig',
-                            name: 'minjianOrig',
-                            component: minjianOrig,
-                            curMenuName:"录入信息维护/出力方"
+                            path: '/luruInfo/output',
+                            name: 'output',
+                            component: output,
+                            curMenuName:"录入信息维护/我要出力"
 
                         },
                     ]
@@ -113,23 +113,23 @@ export default new Router({
 
                         },
                         {
-                            path: '/curTimeInfo/gongyingInfo',
-                            name: 'gongyingInfo',
-                            component: gongyingInfo,
+                            path: '/curTimeInfo/supplyInfo',
+                            name: 'supplyInfo',
+                            component: supplyInfo,
                             curMenuName:"实时播报信息/供应信息"
 
                         },
                         {
-                            path: '/curTimeInfo/qiugouInfo',
-                            name: 'qiugouInfo',
-                            component: qiugouInfo,
+                            path: '/curTimeInfo/purchaseDemandInfo',
+                            name: 'purchaseDemandInfo',
+                            component: purchaseDemandInfo,
                             curMenuName:"实时播报信息/求购信息"
 
                         },
                         {
-                            path: '/curTimeInfo/zizhuInfo',
-                            name: 'zizhuInfo',
-                            component: zizhuInfo,
+                            path: '/curTimeInfo/fundInfo',
+                            name: 'fundInfo',
+                            component: fundInfo,
                             curMenuName:"实时播报信息/资助信息"
                         },
                     ]
