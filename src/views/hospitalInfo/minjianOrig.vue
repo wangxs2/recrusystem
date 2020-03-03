@@ -18,7 +18,7 @@
         </div>
         <div class="search-input">
           <span>内容:</span>
-          <el-input v-model="content" placeholder="请输入查询内容" clearable></el-input>
+          <el-input v-model="content" placeholder="输入地区、机构或岗位名称" clearable></el-input>
         </div>
         <div class="search-input search-btn" @click="search">搜索</div>
 
@@ -203,8 +203,10 @@ export default {
 <style lang="scss">
 @import '../../assets/css/common.scss';
 .minjian-orig{
-  .el-input{
-    width:200px;
+  .search-input{
+    .el-input{
+      width:350px;
+    }
   }
   
 }

@@ -16,6 +16,10 @@
             end-placeholder="结束日期">
           </el-date-picker>
         </div>
+        <div class="search-input">
+          <span>内容:</span>
+          <el-input v-model="content" placeholder="请输入地区、机构" clearable></el-input>
+        </div>
         <!-- <div class="search-input">
           <span>物品名称:</span>
           <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择物品名称" @select="handleSelect" clearable></el-autocomplete>
@@ -174,6 +178,7 @@ export default {
       page:1,
       pageSize:10,
       startEndTate:[],
+      content:'',
       goodsName:'',
       acceptInfo:'',
       goodsNameList: [],
@@ -319,7 +324,7 @@ export default {
       this.tableData=[]
       this.params={
         materialType:3,
-        // needName:this.goodsName,
+        content:this.content,
         // status:this.acceptInfo,
         page:this.page,
         pageSize:this.pageSize
@@ -393,6 +398,11 @@ export default {
 <style lang="scss">
 @import '../../assets/css/common.scss';
 .minjian-orig{
+  .search-input{
+    .el-input{
+      width:350px;
+    }
+  }
   
 }
 

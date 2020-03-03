@@ -18,7 +18,8 @@
         </div>
         <div class="search-input">
           <span>岗位名称:</span>
-          <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择岗位名称" @select="handleSelect" clearable></el-autocomplete>
+          <el-input v-model="content" placeholder="请输入地区、机构或岗位名称" clearable></el-input>
+          <!-- <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择岗位名称" @select="handleSelect" clearable></el-autocomplete> -->
         </div>
         <!-- <div class="search-input">
           <span>接受捐赠/采购情况:</span>
@@ -164,6 +165,7 @@ export default {
       pageSize:10,
       startEndTate:[],
       goodsName:'',
+      content:'',
       acceptInfo:'',
       goodsNameList: [],
       acceptInfoList: [
@@ -318,7 +320,7 @@ export default {
       this.tableData=[]
       this.params={
         materialType:2,
-        needName:this.goodsName,
+        content:this.content,
         // status:this.acceptInfo,
         page:this.page,
         pageSize:this.pageSize
@@ -389,6 +391,11 @@ export default {
 <style lang="scss">
 @import '../../assets/css/common.scss';
 .gong{
+  .search-input{
+    .el-input{
+      width:350px;
+    }
+  }
   
 }
 

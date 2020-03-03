@@ -17,8 +17,9 @@
           </el-date-picker>
         </div>
         <div class="search-input">
-          <span>岗位名称:</span>
-          <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择岗位名称" @select="handleSelect" clearable></el-autocomplete>
+          <span>内容:</span>
+          <el-input v-model="content" placeholder="请输入地区、机构或岗位名称" clearable></el-input>
+          <!-- <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="输入地区、机构或岗位名称" @select="handleSelect" clearable></el-autocomplete> -->
         </div>
         <!-- <div class="search-input">
           <span>接受捐赠/采购情况:</span>
@@ -268,6 +269,7 @@ export default {
       pageSize:10,
       startEndTate:[],
       goodsName:'',
+      content:'',
       acceptInfo:'',
       goodsNameList: [],
       acceptInfoList: [
@@ -731,7 +733,7 @@ export default {
       this.tableData=[]
       this.params={
         materialType:1,
-        needName:this.goodsName,
+        content:this.content,
         // status:this.acceptInfo,
         page:this.page,
         pageSize:this.pageSize
@@ -802,6 +804,12 @@ export default {
 <style lang="scss">
 @import '../../assets/css/common.scss';
 .xu{
+  
+  .search-input{
+    .el-input{
+      width:350px;
+    }
+  }
   .input-wrapper{
     display:flex;
     justify-content:flex-start;
