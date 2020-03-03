@@ -24,11 +24,11 @@ module.exports = {
         // host: '10.1.',
         open: false, // 配置自动启动浏览器
         proxy: {
-            '/auditkindness': {
-                target: 'http://47.100.200.255:19955/auditkindness',  // 测试
+            '/auditmrcez': {
+                target: 'http://47.100.200.255:19955/auditmrcez',  // 测试
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/auditkindness': '/'
+                    '^/auditmrcez': '/'
                 }
             }
         }

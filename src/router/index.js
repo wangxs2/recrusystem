@@ -64,7 +64,7 @@ export default new Router({
                             path: '/hospitalInfo/minjianOrig',
                             name: 'minjianOrig1',
                             component: minjianOrig1,
-                            curMenuName:"发布信息维护/民间组织"
+                            curMenuName:"发布信息维护/出力方"
 
                         },
                     ]
@@ -94,7 +94,7 @@ export default new Router({
                             path: '/luruInfo/minjianOrig',
                             name: 'minjianOrig',
                             component: minjianOrig,
-                            curMenuName:"录入信息维护/民间组织"
+                            curMenuName:"录入信息维护/出力方"
 
                         },
                     ]

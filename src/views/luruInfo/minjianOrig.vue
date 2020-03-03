@@ -1,7 +1,7 @@
 <template>
   <div class="minjian-orig">
     <div class="cur-menu-name">
-        <span>录入信息维护/民间组织</span>
+        <span>录入信息维护/出力方</span>
     </div>
     <div class="table-search-wrapper">
       <div class="search-wrapper">
@@ -43,7 +43,7 @@
             <template slot-scope="scope">
               <span v-if="scope.row.materialType==1">需求方</span>
               <span v-if="scope.row.materialType==2">提供方</span>
-              <span v-if="scope.row.materialType==3">民间组织</span>
+              <span v-if="scope.row.materialType==3">出力方</span>
             </template>
           </el-table-column>
           <el-table-column prop="province" label="省"></el-table-column>

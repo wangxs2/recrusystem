@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
       <div class="layout-top">
-          <div class="title">云逆行·新冠肺炎物资公益平台-后台数据维护系统</div>
+          <div class="title">全国工商联复工复产人才对接平台-后台数据维护系统</div>
           <div class="user-wrapper">
               <span>欢迎您</span>
               <span class="user">
@@ -36,7 +36,7 @@
                     <el-menu-item-group title="">
                         <el-menu-item index="/hospitalInfo/xu"><img src="../../assets/images/icon_1_1.png"  alt="" />需方</el-menu-item>
                         <el-menu-item index="/hospitalInfo/gong"><img src="../../assets/images/icon_1_2.png"  alt="" />供方</el-menu-item>
-                        <el-menu-item index="/hospitalInfo/minjianOrig"><img src="../../assets/images/icon_1_3.png"  alt="" />民间组织</el-menu-item>
+                        <el-menu-item index="/hospitalInfo/minjianOrig"><img src="../../assets/images/icon_1_3.png"  alt="" />出力方</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
                 <el-submenu index="/luruInfo">
@@ -47,7 +47,7 @@
                     <el-menu-item-group title="">
                         <el-menu-item index="/luruInfo/xu"><img src="../../assets/images/icon_1_1.png"  alt="" />需方</el-menu-item>
                         <el-menu-item index="/luruInfo/gong"><img src="../../assets/images/icon_1_2.png"  alt="" />供方</el-menu-item>
-                        <el-menu-item index="/luruInfo/minjianOrig"><img src="../../assets/images/icon_1_3.png"  alt="" />民间组织</el-menu-item>
+                        <el-menu-item index="/luruInfo/minjianOrig"><img src="../../assets/images/icon_1_3.png"  alt="" />出力方</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
                 <el-submenu index="/curTimeInfo">

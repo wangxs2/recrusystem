@@ -1,7 +1,7 @@
 <template>
   <div class="minjian-orig">
     <div class="cur-menu-name">
-        <span>发布信息维护/民间组织</span>
+        <span>发布信息维护/出力方</span>
     </div>
     <div class="table-search-wrapper">
       <div class="search-wrapper">

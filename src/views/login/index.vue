@@ -2,7 +2,7 @@
   <div class="login">
     <div class="login-top">
       <div class="login-desc">
-        <span>云逆行·新冠肺炎物资公益平台</span>
+        <span>全国工商联复工复产人才对接平台</span>
         <span>后台数据维护系统</span>
       </div>
     </div>

@@ -9,7 +9,7 @@ Vue.prototype.$axios = axios
 // debugger
 export const Axios = axios.create({
   // baseURL: process.env.API_HOST,
-  baseURL: "/auditkindness/",
+  baseURL: "/auditmrcez/",
   timeout: 50000,
   withCredentials: true // 是否允许带cookie这些
 })
