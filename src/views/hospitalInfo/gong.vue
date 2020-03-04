@@ -32,7 +32,7 @@
           </el-table-column>
           <el-table-column prop="gaodeLon" label="经度"></el-table-column>
           <el-table-column prop="gaodeLat" label="纬度"></el-table-column>
-          <el-table-column prop="createTime" label="物资提供时间">
+          <el-table-column prop="createTime" label="预计到岗时间">
             
             <template slot-scope="scope">
               <div v-if="scope.row.createTime">{{scope.row.createTime.substring(0,19)}}</div>
