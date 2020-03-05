@@ -264,8 +264,11 @@ export default {
                 })
                 item.linkPeopleList=item.linkPeopleList
               }
-              if (item.createTime){
-                item.createTime=formatDate(item.createTime)
+              if (item.startTime){
+                item.startTime=formatDate(item.startTime)
+              }
+              if (item.endTime){
+                item.endTime=formatDate(item.endTime)
               }
               
             })
@@ -276,8 +279,8 @@ export default {
     handlderive() {
       this.tableExecl=1
         import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = [ '机构名称', '省', '市', '详细地址', '出力范围', '服务覆盖范围', '起始日期', '结束日期', '机构类型',"信息链接","具体描述"]
-          const filterVal = [ 'name', 'province', 'city', 'address', 'serviceType', 'serviceRange', 'startTime', 'endTime', 'type',"sourceLink","descr"]
+          const tHeader = [ '机构名称','类型', '省', '市', '详细地址', '出力范围', '服务覆盖范围', '起始日期', '结束日期', '机构类型',"信息链接","具体描述",'联系人','图片链接','审核状态','审核意见','发布状态']
+          const filterVal = [ 'name',"materialType", 'province', 'city', 'address', 'serviceType', 'serviceRange', 'startTime', 'endTime', 'type',"sourceLink","descr",'linkPeople','attachment','isValid','checkDescr','hasShow']
           const data = this.formatJson(filterVal, this.tableDataExecl)
           excel.export_json_to_excel({
             header: tHeader,
@@ -298,6 +301,33 @@ export default {
               v[j]="提供方"
             } else if(v[j]==3){
               v[j]="出力方"
+            }
+            return v[j]
+          }
+          if (j === 'attachment'){
+            if (v[j]&&v[j].length){
+              v[j]=v[j].join(",")
+            }
+            return v[j]
+
+          }
+          if (j === 'isValid') {
+            if (v[j]==0){
+              v[j]="未审核"
+            } else if(v[j]==1){
+              v[j]="审核通过"
+            } else if(v[j]==2){
+              v[j]="审核不通过"
+            } else if(v[j]==3){
+              v[j]="后台录入"
+            }
+            return v[j]
+          }
+          if (j === 'hasShow') {
+            if (v[j]==0){
+              v[j]="未发布"
+            } else if(v[j]==1){
+              v[j]="已发布"
             }
             return v[j]
           }
