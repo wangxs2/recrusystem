@@ -98,15 +98,33 @@ export default {
   },
   mounted () {
     this.curHeight=screenHeight()
+    let searchData = JSON.parse(sessionStorage.getItem("searchData"))
+
+    if (searchData){
+      this.params=searchData
+      this.content=searchData.content
+      if (searchData.startDate&&searchData.endDate){
+
+        this.startEndTate=[searchData.startDate,searchData.endDate]
+      }
+      this.getTableData(this.params)
+    } else {
+      this.params={
+        orgType:2,
+        page:this.page,
+        pageSize:this.pageSize
+      }
+      this.getTableData(this.params)
+    }
 
   },
   created () {
-    this.params={
-      orgType:2,
-      page:this.page,
-      pageSize:this.pageSize
-    }
-    this.getTableData(this.params)
+    // this.params={
+    //   orgType:2,
+    //   page:this.page,
+    //   pageSize:this.pageSize
+    // }
+    // this.getTableData(this.params)
   },
   methods: {
     deleteRow(row){
@@ -164,6 +182,7 @@ export default {
       this.$nextTick(() => {
           this.pageshow = true
       })
+      sessionStorage.setItem("searchData",JSON.stringify(this.params))
 
     },
     getTableData(params){

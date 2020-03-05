@@ -414,21 +414,54 @@ export default {
   },
   mounted () {
     this.curHeight=screenHeight()
+    let searchData = JSON.parse(sessionStorage.getItem("searchData"))
+    let searchData1 = JSON.parse(sessionStorage.getItem("searchData1"))
+
+    if (searchData){
+      this.params=searchData
+      this.content=searchData.content
+      if (searchData.startDate&&searchData.endDate){
+
+        this.startEndTate=[searchData.startDate,searchData.endDate]
+      }
+      this.getTableData(this.params)
+    } else {
+      this.params={
+        materialType:1,
+        page:this.page,
+        pageSize:this.pageSize
+      }
+      this.getTableData(this.params)
+    }
+    if (searchData1){
+      let x=searchData1
+      this.content=searchData1.content
+      if (searchData1.startDate&&searchData1.endDate){
+
+        this.startEndTate=[searchData1.startDate,searchData1.endDate]
+      }
+      this.getTableDataExecal(x)
+    } else {
+      let x={
+        materialType:1,
+      }
+      this.getTableDataExecal(x)
+    }
 
   },
   created () {
-    this.params={
-      materialType:1,
-      page:this.page,
-      pageSize:this.pageSize
-    }
-    this.getTableData(this.params)
+    // this.params={
+    //   materialType:1,
+    //   page:this.page,
+    //   pageSize:this.pageSize
+    // }
+    // this.getTableData(this.params)
     this.getNeedsNameList()
 
-    let x={
-      materialType:1,
-    }
-    this.getTableDataExecal(x)
+    // let x={
+    //   materialType:1,
+    // }
+    // this.getTableDataExecal(x)
   },
   methods: {
     getTableDataExecal(params){
@@ -868,8 +901,10 @@ export default {
           x.endDate=''
         }
         this.getTableDataExecal(x)
+        sessionStorage.setItem("searchData1",JSON.stringify(x))
 
       }
+      sessionStorage.setItem("searchData",JSON.stringify(this.params))
 
     },
     getTableData(params){

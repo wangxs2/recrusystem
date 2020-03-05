@@ -117,7 +117,9 @@ export default {
   },
   watch:{
     $route(to,from){
-    //   console.log(to.path)
+        
+      sessionStorage.removeItem("searchData")
+      sessionStorage.removeItem("searchData1")
       sessionStorage.setItem('curMenu',to.path)
     }
   },
