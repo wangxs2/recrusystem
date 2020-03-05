@@ -12,87 +12,87 @@
           <el-table-column prop="date" label="日期"></el-table-column>
           <el-table-column label="我要用工">
             <el-table-column prop="name" label="民营企业">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntAMy" label="新增"></el-table-column>
+              <el-table-column prop="totalEntAMy" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="工商联执常委">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntAGsl" label="新增"></el-table-column>
+              <el-table-column prop="totalEntAGsl" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="央企/国企">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntAGq" label="新增"></el-table-column>
+              <el-table-column prop="totalEntAGq" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="个体工商户">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntAGt" label="新增"></el-table-column>
+              <el-table-column prop="totalEntAGt" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="政府或事业单位">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntAZf" label="新增"></el-table-column>
+              <el-table-column prop="totalEntAZf" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="社会组织">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntASh" label="新增"></el-table-column>
+              <el-table-column prop="totalEntASh" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
           <el-table-column label="我有工人">
             <el-table-column prop="name" label="地方政府">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntBDf" label="新增"></el-table-column>
+              <el-table-column prop="totalEntBDf" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="工商联">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntBGsl" label="新增"></el-table-column>
+              <el-table-column prop="totalEntBGsl" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="社会组织">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntBSh" label="新增"></el-table-column>
+              <el-table-column prop="totalEntBSh" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="人才中介机构">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntBRc" label="新增"></el-table-column>
+              <el-table-column prop="totalEntBRc" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="其他">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntBQt" label="新增"></el-table-column>
+              <el-table-column prop="totalEntBQt" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
           <el-table-column label="我要出力">
             <el-table-column prop="name" label="法律咨询">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntCFl" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCFl" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="交通运输">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntCJt" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCJt" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="健康体检">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntCJk" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCJk" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="面试测评">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntCMs" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCMs" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="劳务派遣">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntCLw" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCLw" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="保险服务">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntCBx" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCBx" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="优惠政策">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntCYh" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCYh" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="其他">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newEntCQt" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCQt" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
-          <el-table-column label="备注说明"></el-table-column>
+          <el-table-column label="备注说明" prop="remark"></el-table-column>
         </el-table>
 
       </div>
@@ -113,24 +113,7 @@ export default {
     return {
       curHeight:0,
       myChart: '',
-      tableData: [
-        {
-          date: '2016-05-03',
-          name1: '',
-          name1: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }
-      ],
+      tableData: [],
       tableDataExecl:[]
     }
   },
@@ -145,8 +128,12 @@ export default {
   methods: {
     getTableData(){
        this.$fetchGet("count/specificType").then(res => {
-         console.log(res)
-          // this.tableData=res.data.list
+          this.tableData=res
+          if (this.tableData&&this.tableData.length>0){
+            this.tableData.forEach(item => {
+              item.date=formatDate(item.date)
+            })
+          }
       })
     },
     handleDownloadExcel() {

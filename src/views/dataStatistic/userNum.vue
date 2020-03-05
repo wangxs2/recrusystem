@@ -12,45 +12,45 @@
           <el-table-column prop="date" label="日期"></el-table-column>
           <el-table-column label="我要用工">
             <el-table-column prop="name" label="机构数">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newNeed" label="新增"></el-table-column>
+              <el-table-column prop="totalNeed" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="岗位数">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newNeedTh" label="新增"></el-table-column>
+              <el-table-column prop="toatlNeedTh" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
           <el-table-column label="我有工人">
             <el-table-column prop="name" label="机构数">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newSupport" label="新增"></el-table-column>
+              <el-table-column prop="totalSupport" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="岗位数">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newSupportTh" label="新增"></el-table-column>
+              <el-table-column prop="toatlSupportTh" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
           <el-table-column label="我要出力">
             <el-table-column prop="name" label="机构数">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newService" label="新增"></el-table-column>
+              <el-table-column prop="totalService" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="岗位数">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newServiceTh" label="新增"></el-table-column>
+              <el-table-column prop="totatlServiceTh" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
           <el-table-column label="平台影响力">
             <el-table-column prop="name" label="浏览量">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newVisit" label="新增"></el-table-column>
+              <el-table-column prop="totalVisit" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="点赞数">
-              <el-table-column prop="zip" label="新增"></el-table-column>
-              <el-table-column prop="zip" label="累计"></el-table-column>
+              <el-table-column prop="newLike" label="新增"></el-table-column>
+              <el-table-column prop="totalLike" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
-          <el-table-column label="备注说明"></el-table-column>
+          <el-table-column label="备注说明" prop="remark"></el-table-column>
         </el-table>
 
       </div>
@@ -71,38 +71,7 @@ export default {
     return {
       curHeight:0,
       myChart: '',
-      tableData: [
-          {
-          date: '2016-05-03',
-          name1: '',
-          name1: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }
-      ],
+      tableData: [],
       tableDataExecl:[]
     }
   },
@@ -116,8 +85,12 @@ export default {
   methods: {
     getTableData(){
        this.$fetchGet("count/userNum").then(res => {
-         console.log(res)
-          // this.tableData=res.data.list
+          this.tableData=res.data
+          if (this.tableData&&this.tableData.length>0){
+            this.tableData.forEach(item => {
+              item.date=formatDate(item.date)
+            })
+          }
       })
     },
     handleDownloadExcel() {
