@@ -4,6 +4,9 @@
         <span>统计/用户数量统计</span>
     </div>
     <div class="table-search-wrapper">
+      <!-- <div class="search-wrapper">
+        <div class="search-input search-btn" @click="handleDownloadExcel">导出</div>
+      </div> -->
       <div class="table-wrapper table-wrapper-border">
         <el-table :data="tableData" border style="width: 100%" :height="curHeight-160">
           <el-table-column prop="date" label="日期"></el-table-column>
@@ -68,7 +71,8 @@ export default {
     return {
       curHeight:0,
       myChart: '',
-        tableData: [{
+      tableData: [
+          {
           date: '2016-05-03',
           name1: '',
           name1: '王小虎',
@@ -97,94 +101,128 @@ export default {
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }],
-      opinionData:
-      [{"count":1,"province":"海南省"},{"count":1,"province":"云南省"},{"count":3,"province":"宁夏回族自治区"},{"count":5,"province":"吉林省"},{"count":5,"province":"黑龙江省"},{"count":6,"province":"甘肃省"},{"count":7,"province":"山西省"},{"count":12,"province":"贵州省"},{"count":12,"province":"陕西省"},{"count":12,"province":"广西壮族自治区"},{"count":13,"province":"湖北省"},{"count":14,"province":"福建省"},{"count":15,"province":"四川省"},{"count":21,"province":"浙江省"},{"count":23,"province":"内蒙古自治区"},{"count":24,"province":"天津市"},{"count":27,"province":"上海市"},{"count":30,"province":"河南省"},{"count":30,"province":"湖南省"},{"count":31,"province":"北京市"},{"count":31,"province":"辽宁省"},{"count":32,"province":"江西省"},{"count":32,"province":"重庆市"},{"count":34,"province":"广东省"},{"count":38,"province":"河北省"},{"count":39,"province":"安徽省"},{"count":72,"province":"山东省"},{"count":73,"province":"江苏省"}
-      ]
+        }
+      ],
+      tableDataExecl:[]
     }
   },
   mounted () {
       
     this.curHeight=screenHeight()
-    // this.init()
-    
-    // window.addEventListener('resize', () => {
-    //   // 自动渲染echarts
-    //   this.myChart.resize();
-    // })
-
   },
   created () {
   },
   methods: {
-    // init:function(){
-    //   setTimeout(()=>{
-    //         this.drawPie();
-    //     })
-    // },
-    // drawPie(){
-    //   this.myChart=this.echarts.init(document.getElementById('main'));
-    //   let x=[],y=[]
-    //   this.opinionData.forEach(item => {
-    //     x.push(item.province)
-    //     y.push(item.count)
-
-    //   })
-      
-    //     var option = {
-    //         title: {
-    //             // text: 'ECharts 入门示例'
-    //         },
-    //         tooltip:{
-    //             show: true,
-    //             trigger: 'axis',
-    //             axisPointer: {
-    //                 type:'shadow',
-    //             },
-    //             backgroundColor: '#fff',
-    //         },
-    //         legend: {
-    //             data:['省份']
-    //         },
-    //         xAxis: {
-    //             data: x,
-    //             axisLabel:{  
-    //             interval:0,//横轴信息全部显示  
-    //             rotate:-15,//-15度角倾斜显示  
-    //             },
-    //         },
-    //         yAxis: {},
-    //         series: [{
-    //             name: '企业数',
-    //             type: 'bar',
-    //             data: y
-    //         }]
-    //     };
-
-    //     // 使用刚指定的配置项和数据显示图表。
-    //     this.myChart.setOption(option);
-    // }
+    handleDownloadExcel() {
+      // this.downloadLoading = true
+      import("@/vendor/Export2Excel1").then(excel => {
+        const multiHeader = [
+          [
+            '日期',
+            '我要用工',
+            '',
+            '',
+            '',
+            '我有工人',
+            '',
+            '',
+            '',
+            '我要出力',
+            '',
+            '',
+            '',
+            '平台影响力',
+            '',
+            '',
+            '',
+            '备注说明'
+          ]
+        ];
+        const multiHeader2 = [
+          [
+            '',
+            '机构数',
+            '',
+            '岗位数',
+            '',
+            '机构数',
+            '',
+            '岗位数',
+            '',
+            '机构数',
+            '',
+            '岗位数',
+            '',
+            '浏览量',
+            '',
+            '点赞量',
+            '',
+            '',
+          ]
+        ];
+        const tHeader = [
+          "",
+          "新增",
+          "累计",
+          "新增",
+          "累计",
+          "新增",
+          "累计",
+          "新增",
+          "累计",
+          "新增",
+          "累计",
+          "新增",
+          "累计",
+          "新增",
+          "累计",
+          "新增",
+          "累计",
+          ''
+        ];
+        const filterVal = this.headVal;
+        const data = this.formatJson(filterVal, this.tableDataExecl);
+       //进行所有表头的单元格合并，建议一行一行来，不然容易整乱
+        const merges = [
+          "A1:A3",
+          'B1:E1',
+          'F1:I1',
+          'J1:M1',
+          'N1:Q1',
+          'R1:R3',
+          'B2:C2',
+          'D2:E2',
+          'F2:G2',
+          'H2:I2',
+          'J2:K2',
+          'L2:M2',
+          'N2:O2',
+          'P2:Q2',
+        ];
+        //  const merges = ['A1:A2', 'B1:B2', 'C1:I2','J1:P2']
+ 
+        excel.export_json_to_excel({
+          multiHeader,//这里是第一行的表头
+          multiHeader2,//这里是第二行的表头
+          header: tHeader,//这里应该是算第三行的表头
+          data,
+          merges,
+          filename: curDataTime()+"导出记录",
+            autoWidth: true,
+        });
+      });
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v =>
+        filterVal.map(j => {
+          if (j === "timestamp") {
+            return parseTime(v[j]);
+          } else {
+            return v[j];
+          }
+        })
+      );
+    },
 
   }
 	
