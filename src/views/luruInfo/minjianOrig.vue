@@ -458,6 +458,13 @@ export default {
           // status:this.acceptInfo,
 
         }
+        if (this.startEndTate&&this.startEndTate.length>0){
+          x.startDate=this.startEndTate[0]
+          x.endDate=this.startEndTate[1]
+        } else {
+          x.startDate=''
+          x.endDate=''
+        }
         this.getTableDataExecal(x)
 
       }

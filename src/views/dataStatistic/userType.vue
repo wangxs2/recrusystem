@@ -140,8 +140,15 @@ export default {
 
   },
   created () {
+    this.getTableData()
   },
   methods: {
+    getTableData(){
+       this.$fetchGet("count/specificType").then(res => {
+         console.log(res)
+          // this.tableData=res.data.list
+      })
+    },
     handleDownloadExcel() {
       // this.downloadLoading = true
       import("@/vendor/Export2Excel1").then(excel => {

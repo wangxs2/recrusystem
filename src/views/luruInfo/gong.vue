@@ -17,7 +17,7 @@
           </el-date-picker>
         </div>
         <div class="search-input">
-          <span>岗位名称:</span>
+          <span>内容:</span>
           <el-input v-model="content" placeholder="请输入地区、机构或岗位名称" clearable></el-input>
           <!-- <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择岗位名称" @select="handleSelect" clearable></el-autocomplete> -->
         </div>
@@ -447,6 +447,13 @@ export default {
           content:this.content,
           // status:this.acceptInfo,
 
+        }
+        if (this.startEndTate&&this.startEndTate.length>0){
+          x.startDate=this.startEndTate[0]
+          x.endDate=this.startEndTate[1]
+        } else {
+          x.startDate=''
+          x.endDate=''
         }
         this.getTableDataExecal(x)
 

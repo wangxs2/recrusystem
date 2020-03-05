@@ -8,9 +8,9 @@ import curTime from '@/views/curTimeInfo/curTime.vue'
 import supplyInfo from '@/views/curTimeInfo/gongyingInfo.vue'
 import purchaseDemandInfo from '@/views/curTimeInfo/qiugouInfo.vue'
 import fundInfo from '@/views/curTimeInfo/zizhuInfo.vue'
-import dataStatistic from '@/views/dataStatistic/index'
-import userNum from '@/views/dataStatistic/userNum.vue'
-import userType from '@/views/dataStatistic/userType.vue'
+// import dataStatistic from '@/views/dataStatistic/index'
+// import userNum from '@/views/dataStatistic/userNum.vue'
+// import userType from '@/views/dataStatistic/userType.vue'
 import luruInfo from '@/views/luruInfo/index.vue'
 import worker from '@/views/luruInfo/gong.vue'
 import recruitUse from '@/views/luruInfo/xu.vue'
@@ -136,29 +136,29 @@ export default new Router({
                         },
                     ]
                 }, 
-                {
-                    path: '/dataStatistic',
-                    name: 'dataStatistic',
-                    component: dataStatistic,
-                    curMenuName:"统计",
-                    children:[
-                        {
-                            path: '/dataStatistic/userNum',
-                            name: 'userNum',
-                            component: userNum,
-                            curMenuName:"统计/用户数量统计"
+                // {
+                //     path: '/dataStatistic',
+                //     name: 'dataStatistic',
+                //     component: dataStatistic,
+                //     curMenuName:"统计",
+                //     children:[
+                //         {
+                //             path: '/dataStatistic/userNum',
+                //             name: 'userNum',
+                //             component: userNum,
+                //             curMenuName:"统计/用户数量统计"
 
-                        },
-                        {
-                            path: '/dataStatistic/userType',
-                            name: 'userType',
-                            component: userType,
-                            curMenuName:"统计/用户类型统计"
+                //         },
+                //         {
+                //             path: '/dataStatistic/userType',
+                //             name: 'userType',
+                //             component: userType,
+                //             curMenuName:"统计/用户类型统计"
 
-                        },
+                //         },
 
-                    ]
-                }, 
+                //     ]
+                // }, 
             ]
         }
     ]
