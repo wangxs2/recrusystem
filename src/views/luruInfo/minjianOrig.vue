@@ -36,6 +36,7 @@
           </el-select>
         </div> -->
         <div class="search-input search-btn" @click="search">搜索</div>
+        <div class="search-input search-btn" @click="handlderive">导出</div>
 
       </div>
       <div class="table-wrapper">
@@ -57,15 +58,15 @@
           <el-table-column prop="serviceType" label="出力范围"></el-table-column>
           <el-table-column prop="serviceRange" label="服务覆盖范围"></el-table-column>
           <el-table-column prop="startTime" label="起始日期">
-            <template slot-scope="scope">
+            <!-- <template slot-scope="scope">
               <div v-if="scope.row.startTime">{{scope.row.startTime.substring(0,10)}}</div>
-            </template>
+            </template> -->
 
           </el-table-column>
           <el-table-column prop="endTime" label="结束日期">
-            <template slot-scope="scope">
+            <!-- <template slot-scope="scope">
               <div v-if="scope.row.endTime">{{scope.row.endTime.substring(0,10)}}</div>
-            </template>
+            </template> -->
 
           </el-table-column>
           <el-table-column prop="type" label="机构类型"></el-table-column>
@@ -166,7 +167,7 @@
 </template>
 
 <script>
-import {screenHeight,formatDate} from "../../utils/util"
+import {screenHeight,formatDate,curDataTime} from "../../utils/util"
 export default {
   name: 'output',
   components: {
@@ -201,6 +202,8 @@ export default {
         }
       ],
       tableData: [],
+      tableDataExecl:[],
+      tableExecl:0,
       total:0,
       gridData: [],
       params:{},
@@ -238,8 +241,84 @@ export default {
     }
     this.getTableData(this.params)
     this.getNeedsNameList()
+
+    let x={
+      materialType:3,
+    }
+    this.getTableDataExecal(x)
   },
   methods: {
+    getTableDataExecal(params){
+      this.$fetchGet("material/getMaterial",params).then(res => {
+          // this.total=res.data.total
+          this.tableDataExecl=res.data.list
+          if (this.tableDataExecl&&this.tableDataExecl.length>0){
+            this.tableDataExecl.forEach(item => {
+              if (item.linkPeople){
+                item.linkPeople=item.linkPeople.replace(/:/g, "-")
+                item.linkPeopleList=item.linkPeople.split(',')
+                item.linkPeopleList.forEach(items => {
+                  // items=items.split(":").join("-")
+                  // console.log(items)
+
+                })
+                item.linkPeopleList=item.linkPeopleList
+              }
+              if (item.createTime){
+                item.createTime=formatDate(item.createTime)
+              }
+              
+            })
+          }
+      })
+
+    },
+    handlderive() {
+      this.tableExecl=1
+        import('@/vendor/Export2Excel').then(excel => {
+          const tHeader = [ '机构名称', '省', '市', '详细地址', '出力范围', '服务覆盖范围', '起始日期', '结束日期', '机构类型',"信息链接","具体描述"]
+          const filterVal = [ 'name', 'province', 'city', 'address', 'serviceType', 'serviceRange', 'startTime', 'endTime', 'type',"sourceLink","descr"]
+          const data = this.formatJson(filterVal, this.tableDataExecl)
+          excel.export_json_to_excel({
+            header: tHeader,
+            data,
+            filename: curDataTime()+"导出记录",
+            autoWidth: true,
+            // filename: this.filename
+          })
+        })
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v =>
+        filterVal.map(j => {
+          if (j === 'materialType') {
+            if (v[j]==1){
+              v[j]="需求方"
+            } else if(v[j]==2){
+              v[j]="提供方"
+            } else if(v[j]==3){
+              v[j]="出力方"
+            }
+            return v[j]
+          }
+          // if (j === 'startTime') {
+          //   if (v[j]){
+          //     v[j]=formatDate(v[j])
+          //     v[j]=v[j].substring(0,10)
+          //   }
+          //   return v[j]
+          // }
+          // if (j === 'endTime') {
+          //   if (v[j]){
+          //     v[j]=formatDate(v[j])
+          //     v[j]=v[j].substring(0,10)
+          //   }
+          //   return v[j]
+          // }
+          return v[j]
+        })
+      )
+    },
     clickPublish(row){
       this.dialogPublishShow=true
       this.curId=row.id
@@ -342,6 +421,16 @@ export default {
       this.$nextTick(() => {
           this.pageshow = true
       })
+      if (this.tableExecl=1){
+        let x={
+          materialType:3,
+          content:this.content,
+          // status:this.acceptInfo,
+
+        }
+        this.getTableDataExecal(x)
+
+      }
 
     },
     getTableData(params){

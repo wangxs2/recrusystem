@@ -34,6 +34,7 @@
         </div> -->
         <div class="search-input search-btn" @click="search">搜索</div>
         <!-- <div class="search-input search-btn" @click="add">新增</div> -->
+        <div class="search-input search-btn" @click="handlderive">导出</div>
 
       </div>
       <div class="table-wrapper">
@@ -56,7 +57,11 @@
           <el-table-column prop="type" label="机构类型"></el-table-column>
           <el-table-column prop="detail" label="用工需求" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column prop="descr" label="需求说明" :show-overflow-tooltip="true"></el-table-column>
-          <el-table-column prop="createTime" label="发布时间"></el-table-column>
+          <el-table-column prop="createTime" label="发布时间">
+            <!-- <template slot-scope="scope">
+              <div v-if="scope.row.createTime">{{scope.row.createTime.substring(0,10)}}</div>
+            </template> -->
+          </el-table-column>
           <el-table-column prop="sourceLink" label="信息链接"></el-table-column>
 
           
@@ -255,7 +260,7 @@
 </template>
 
 <script>
-import {screenHeight,formatDate} from "../../utils/util"
+import {screenHeight,formatDate,curDataTime} from "../../utils/util"
 import json from "../../utils/city_code.json"
 export default {
   name: 'recruitUse',
@@ -291,6 +296,8 @@ export default {
         }
       ],
       tableData: [],
+      tableDataExecl:[],
+      tableExecl:0,
       total:0,
       gridData: [],
       params:{},
@@ -417,8 +424,76 @@ export default {
     }
     this.getTableData(this.params)
     this.getNeedsNameList()
+
+    let x={
+      materialType:1,
+    }
+    this.getTableDataExecal(x)
   },
   methods: {
+    getTableDataExecal(params){
+      this.$fetchGet("material/getMaterial",params).then(res => {
+          // this.total=res.data.total
+          this.tableDataExecl=res.data.list
+          if (this.tableDataExecl&&this.tableDataExecl.length>0){
+            this.tableDataExecl.forEach(item => {
+              if (item.linkPeople){
+                item.linkPeople=item.linkPeople.replace(/:/g, "-")
+                item.linkPeopleList=item.linkPeople.split(',')
+                item.linkPeopleList.forEach(items => {
+                  // items=items.split(":").join("-")
+                  // console.log(items)
+
+                })
+                item.linkPeopleList=item.linkPeopleList
+              }
+              if (item.createTime){
+                item.createTime=formatDate(item.createTime)
+              }
+              
+            })
+          }
+      })
+
+    },
+    handlderive() {
+      this.tableExecl=1
+        import('@/vendor/Export2Excel').then(excel => {
+          const tHeader = [ '机构名称', '省', '市', '详细地址', '所属行业领域', '机构类型', '用工需求', '需求说明', '发布时间',"机构类型"]
+          const filterVal = [ 'name', 'province', 'city', 'address', 'serviceRange', 'type', 'detail', 'descr', 'createTime',"materialType"]
+          const data = this.formatJson(filterVal, this.tableDataExecl)
+          excel.export_json_to_excel({
+            header: tHeader,
+            data,
+            filename: curDataTime()+"导出记录",
+            autoWidth: true,
+            // filename: this.filename
+          })
+        })
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v =>
+        filterVal.map(j => {
+          if (j === 'materialType') {
+            if (v[j]==1){
+              v[j]="需求方"
+            } else if(v[j]==2){
+              v[j]="提供方"
+            } else if(v[j]==3){
+              v[j]="出力方"
+            }
+            return v[j]
+          }
+          // if (j === 'createTime') {
+          //   if (v[j]){
+          //     v[j]=v[j].substring(0,10)
+          //   }
+          //   return v[j]
+          // }
+          return v[j]
+        })
+      )
+    },
     selectTime(value){
       console.log(value)
     },
@@ -751,6 +826,16 @@ export default {
       this.$nextTick(() => {
           this.pageshow = true
       })
+      if (this.tableExecl=1){
+        let x={
+          materialType:1,
+          content:this.content,
+          // status:this.acceptInfo,
+
+        }
+        this.getTableDataExecal(x)
+
+      }
 
     },
     getTableData(params){

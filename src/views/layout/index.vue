@@ -62,10 +62,16 @@
                         <el-menu-item index="/curTimeInfo/supplyInfo"><img src="../../assets/images/icon_3_4.png"  alt="" />供应详情</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
-                <el-menu-item index="/dataStatistic">
-                    <img src="../../assets/images/icon_3.png"  alt="" />
-                    <span slot="title">统计</span>
-                </el-menu-item>
+                <el-submenu index="/dataStatistic">
+                    <template slot="title">
+                        <img src="../../assets/images/icon_3.png"  alt="" />
+                        <span>统计</span>
+                    </template>
+                    <el-menu-item-group title="">
+                        <el-menu-item index="/dataStatistic/userNum"><img src="../../assets/images/icon_1_2.png"  alt="" />用户数量统计</el-menu-item>
+                        <el-menu-item index="/dataStatistic/userType"><img src="../../assets/images/icon_1_2.png"  alt="" />用户类型统计</el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
             </el-menu>
         </div>
         <div class="layout-right">

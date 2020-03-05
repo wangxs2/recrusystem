@@ -1,10 +1,6 @@
 <template>
   <div class="data-statistic">
-    <div class="cur-menu-name">
-        <span>统计</span>
-    </div>
-      正在开发中
-
+    <router-view></router-view>
   </div>
 </template>
 
@@ -23,7 +19,6 @@ export default {
   created () {
   },
   methods: {
-
   }
 	
 }

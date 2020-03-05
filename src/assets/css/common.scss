@@ -113,6 +113,34 @@
         }
       }
     }
+    .table-wrapper-border{
+      .el-table th {
+        padding:10px 0;
+      }
+      .el-table td{
+        padding:20px 0;
+
+      }
+      .el-table--border,
+      .el-table--group {
+          border-color: #ADD8E6;
+      }
+
+      .el-table td,
+      .el-table th.is-leaf {
+              border-bottom: 1px solid #ADD8E6;
+      }
+
+      .el-table--border th,
+      .el-table--border th.gutter:last-of-type {
+              border-bottom: 1px solid #ADD8E6;
+      }
+
+      .el-table--border td,
+      .el-table--border th {
+              border-right: 1px solid #ADD8E6;
+      }
+    }
   }
   .el-dialog--center .el-dialog__body{
     padding:20px 50px!important;

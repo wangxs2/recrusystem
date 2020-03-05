@@ -8,6 +8,9 @@ import common from './utils/common.js' //axios请求封装
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import lrz from 'lrz'  
+import ECharts from 'echarts'
+Vue.prototype.echarts=ECharts;
+Vue.use(ECharts);
 
 Vue.config.productionTip = false
 

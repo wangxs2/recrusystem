@@ -135,14 +135,6 @@ export default {
   components: {
   },
   data () {
-    var validateUrl = (rule, value, callback) => {
-      var reg=/^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(.)+$/
-      if (!reg.test(value)) {
-        callback(new Error('请输入以http://或者https://的网址'));
-      } else {
-        callback();
-      }
-    };
     return {
       curHeight:0,
       dialogTableVisible:false,
@@ -197,7 +189,7 @@ export default {
         ],
         url: [
           { required: false, message: '请输入网页链接', trigger: 'blur' },
-          { validator: validateUrl, trigger: 'blur' }
+          {pattern: /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(.)+$/, message: '请输入以http://或者https://的网址', trigger: 'blur' }
 
         ],
         isTop: [
