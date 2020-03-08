@@ -143,12 +143,36 @@ export default {
       this.pageshow = false
       this.page=1
       this.tableData=[]
-      this.params={
-        orgType:3,
-        page:this.page,
-        pageSize:this.pageSize
+
+      
+      let searchData = JSON.parse(sessionStorage.getItem("searchData"))
+
+      if (searchData){
+        this.params=searchData
+        this.content=searchData.content
+        if (searchData.startDate&&searchData.endDate){
+
+          this.startEndTate=[searchData.startDate,searchData.endDate]
+        }
+        this.getTableData(this.params)
+      } else {
+        this.params={
+          orgType:3,
+          page:this.page,
+          pageSize:this.pageSize
+        }
+        this.getTableData(this.params)
       }
-      this.getTableData(this.params)
+
+
+
+
+      // this.params={
+      //   orgType:3,
+      //   page:this.page,
+      //   pageSize:this.pageSize
+      // }
+      // this.getTableData(this.params)
       this.$nextTick(() => {
           this.pageshow = true
       })

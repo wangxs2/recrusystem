@@ -4,12 +4,17 @@
         <span>统计/用户类型统计</span>
     </div>
     <div class="table-search-wrapper">
-      <!-- <div class="search-wrapper">
+      <div class="search-wrapper">
         <div class="search-input search-btn" @click="handleDownloadExcel">导出</div>
-      </div> -->
+      </div>
       <div class="table-wrapper table-wrapper-border">
         <el-table :data="tableData" border style="width: 100%" :height="curHeight-160">
-          <el-table-column prop="date" label="日期"></el-table-column>
+          <el-table-column prop="date" label="日期">
+            <template slot-scope="scope">
+              <div v-if="scope.row.date">{{scope.row.date.substring(0,10)}}</div>
+            </template>
+
+          </el-table-column>
           <el-table-column label="我要用工">
             <el-table-column prop="name" label="民营企业">
               <el-table-column prop="newEntAMy" label="新增"></el-table-column>
@@ -104,7 +109,7 @@
 </template>
 
 <script>
-import {screenHeight,formatDate} from "../../utils/util"
+import {screenHeight,formatDate,curDataTime} from "../../utils/util"
 export default {
   name: 'dataStatistic',
   components: {
@@ -131,7 +136,24 @@ export default {
           this.tableData=res
           if (this.tableData&&this.tableData.length>0){
             this.tableData.forEach(item => {
-              item.date=formatDate(item.date)
+              if (item.date){
+
+                // item.date=formatDate(item.date)
+                item.date=item.date.substring(5,10)
+                item.date=item.date.split("-")
+                var monthDete='',datyDete=''
+                if (item.date[0]>=10){
+                  monthDete=item.date[0]
+                } else {
+                  monthDete=item.date[0].substring(1,3)
+                }
+                if (item.date[1]>=10){
+                  datyDete=item.date[1]
+                } else {
+                  datyDete=item.date[1].substring(1,3)
+                }
+                item.date=monthDete+'月'+datyDete+'日'
+              }
             })
           }
       })
@@ -269,8 +291,8 @@ export default {
           "累计",
           ''
         ];
-        const filterVal = this.headVal;
-        const data = this.formatJson(filterVal, this.tableDataExecl);
+        const filterVal = [ 'date','newEntAMy','totalEntAMy','newEntAGsl','totalEntAGsl','newEntAGq','totalEntAGq','newEntAGt','totalEntAGt','newEntAZf','totalEntAZf','newEntASh','totalEntASh','newEntBDf','totalEntBDf','newEntBGsl','totalEntBGsl','newEntBSh','totalEntBSh','newEntBRc','totalEntBRc','newEntBQt','totalEntBQt','newEntCFl','totalEntCFl','newEntCJt','totalEntCJt','newEntCJk','totalEntCJk','newEntCMs','totalEntCMs','newEntCLw','totalEntCLw','newEntCBx','totalEntCBx','newEntCYh','totalEntCYh','newEntCQt','totalEntCQt','remark']
+        const data = this.formatJson(filterVal, this.tableData);
        //进行所有表头的单元格合并，建议一行一行来，不然容易整乱
         const merges = [
           "A1:A3",
@@ -298,7 +320,6 @@ export default {
           'AJ2:AK2',
           'AL2:AM2',
         ]
-        //  const merges = ['A1:A2', 'B1:B2', 'C1:I2','J1:P2']
  
         excel.export_json_to_excel({
           multiHeader,//这里是第一行的表头
@@ -307,18 +328,20 @@ export default {
           data,
           merges,
           filename: curDataTime()+"导出记录",
-            autoWidth: true,
+          autoWidth: true,
         });
       });
     },
     formatJson(filterVal, jsonData) {
       return jsonData.map(v =>
         filterVal.map(j => {
-          if (j === "timestamp") {
-            return parseTime(v[j]);
-          } else {
-            return v[j];
+          if (j === 'date') {
+            if (v[j]){
+              v[j]=v[j].substring(0,10)
+            }
+            return v[j]
           }
+          return v[j]
         })
       );
     },

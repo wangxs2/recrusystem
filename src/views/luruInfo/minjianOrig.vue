@@ -101,7 +101,7 @@
               <div v-else-if="scope.row.hasShow==1">已发布</div>
             </template>
           </el-table-column>
-          <el-table-column prop="name" label="查看" fixed="right" width="100">
+          <el-table-column prop="name" label="查看或操作" fixed="right" width="100">
             <template slot-scope="scope">
               <!-- <el-button @click="clickLookGoods(scope.row)" type="text" size="small">查看提供的服务或物资</el-button> -->
               <el-button @click="clickPublish(scope.row)" type="text" size="small" v-if="scope.row.isValid==0||scope.row.isValid==3">审核</el-button>
@@ -405,12 +405,50 @@ export default {
       this.pageshow = false
       this.page=1
       this.tableData=[]
-      this.params={
-        materialType:3,
-        page:this.page,
-        pageSize:this.pageSize
+
+      
+      let searchData = JSON.parse(sessionStorage.getItem("searchData"))
+      let searchData1 = JSON.parse(sessionStorage.getItem("searchData1"))
+
+      if (searchData){
+        this.params=searchData
+        this.content=searchData.content
+        if (searchData.startDate&&searchData.endDate){
+
+          this.startEndTate=[searchData.startDate,searchData.endDate]
+        }
+        this.getTableData(this.params)
+      } else {
+        this.params={
+          materialType:3,
+          page:this.page,
+          pageSize:this.pageSize
+        }
+        this.getTableData(this.params)
       }
-      this.getTableData(this.params)
+      if (searchData1){
+        let x=searchData1
+        this.content=searchData1.content
+        if (searchData1.startDate&&searchData1.endDate){
+
+          this.startEndTate=[searchData1.startDate,searchData1.endDate]
+        }
+        this.getTableDataExecal(x)
+      } else {
+        let x={
+          materialType:3,
+        }
+        this.getTableDataExecal(x)
+      }
+
+
+
+      // this.params={
+      //   materialType:3,
+      //   page:this.page,
+      //   pageSize:this.pageSize
+      // }
+      // this.getTableData(this.params)
       this.$nextTick(() => {
           this.pageshow = true
       })

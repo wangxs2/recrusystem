@@ -4,12 +4,17 @@
         <span>统计/用户数量统计</span>
     </div>
     <div class="table-search-wrapper">
-      <!-- <div class="search-wrapper">
+      <div class="search-wrapper">
         <div class="search-input search-btn" @click="handleDownloadExcel">导出</div>
-      </div> -->
+      </div>
       <div class="table-wrapper table-wrapper-border">
         <el-table :data="tableData" border style="width: 100%" :height="curHeight-160">
-          <el-table-column prop="date" label="日期"></el-table-column>
+          <el-table-column prop="date" label="日期">
+            <!-- <template slot-scope="scope">
+              <div v-if="scope.row.date">{{scope.row.date.substring(0,10)}}</div>
+            </template> -->
+
+          </el-table-column>
           <el-table-column label="我要用工">
             <el-table-column prop="name" label="机构数">
               <el-table-column prop="newNeed" label="新增"></el-table-column>
@@ -35,7 +40,7 @@
               <el-table-column prop="newService" label="新增"></el-table-column>
               <el-table-column prop="totalService" label="累计"></el-table-column>
             </el-table-column>
-            <el-table-column prop="name" label="岗位数">
+            <el-table-column prop="name" label="项目数">
               <el-table-column prop="newServiceTh" label="新增"></el-table-column>
               <el-table-column prop="totatlServiceTh" label="累计"></el-table-column>
             </el-table-column>
@@ -62,7 +67,7 @@
 </template>
 
 <script>
-import {screenHeight,formatDate} from "../../utils/util"
+import {screenHeight,formatDate,curDataTime} from "../../utils/util"
 export default {
   name: 'dataStatistic',
   components: {
@@ -88,7 +93,24 @@ export default {
           this.tableData=res.data
           if (this.tableData&&this.tableData.length>0){
             this.tableData.forEach(item => {
-              item.date=formatDate(item.date)
+              if (item.date){
+
+                // item.date=formatDate(item.date)
+                item.date=item.date.substring(5,10)
+                item.date=item.date.split("-")
+                var monthDete='',datyDete=''
+                if (item.date[0]>=10){
+                  monthDete=item.date[0]
+                } else {
+                  monthDete=item.date[0].substring(1,3)
+                }
+                if (item.date[1]>=10){
+                  datyDete=item.date[1]
+                } else {
+                  datyDete=item.date[1].substring(1,3)
+                }
+                item.date=monthDete+'月'+datyDete+'日'
+              }
             })
           }
       })
@@ -160,8 +182,8 @@ export default {
           "累计",
           ''
         ];
-        const filterVal = this.headVal;
-        const data = this.formatJson(filterVal, this.tableDataExecl);
+        const filterVal = [ 'date',"newNeed", 'totalNeed', 'newNeedTh', 'toatlNeedTh', 'newSupport', 'totalSupport', 'newSupportTh', 'toatlSupportTh', 'newService','totalService','newServiceTh','totatlServiceTh','newVisit','totalVisit','newLike','totalLike','remark']
+        const data = this.formatJson(filterVal, this.tableData);
        //进行所有表头的单元格合并，建议一行一行来，不然容易整乱
         const merges = [
           "A1:A3",
@@ -195,11 +217,13 @@ export default {
     formatJson(filterVal, jsonData) {
       return jsonData.map(v =>
         filterVal.map(j => {
-          if (j === "timestamp") {
-            return parseTime(v[j]);
-          } else {
-            return v[j];
+          if (j === 'date') {
+            if (v[j]){
+              v[j]=v[j].substring(0,10)
+            }
+            return v[j]
           }
+          return v[j]
         })
       );
     },
