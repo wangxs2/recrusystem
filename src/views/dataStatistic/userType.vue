@@ -142,12 +142,14 @@ export default {
       if (searchData.startDate&&searchData.endDate){
 
         this.startEndTate=[searchData.startDate,searchData.endDate]
+      } else {
+        this.startEndTate=[]
       }
       this.getTableData(this.params)
     } else {
       this.params={
-        startDate:getCurrentMonthFirst(),
-        endDate:getCurrentMonthLast(),
+        startDate:this.startEndTate[0],
+        endDate:this.startEndTate[1],
       }
       this.getTableData(this.params)
     }
@@ -163,8 +165,7 @@ export default {
         this.params.startDate=this.startEndTate[0]
         this.params.endDate=this.startEndTate[1]
       } else {
-        this.params.startDate=getCurrentMonthFirst()
-        this.params.endDate=getCurrentMonthLast()
+        this.params={}
       }
       
       this.getTableData(this.params)
