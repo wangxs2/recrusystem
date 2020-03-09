@@ -52,7 +52,7 @@
           <el-table-column prop="publishSource" label="来源"></el-table-column>
           <el-table-column prop="url" label="链接">
             <template slot-scope="scope">
-              <div style="padding:5px;color:#4F84FD;cursor:pointer;" class="font-left"v-if="scope.row.url" @click="goUrl(scope.row)">{{scope.row.url}}</div>
+              <div style="padding:5px;color:#4F84FD;cursor:pointer;" class="font-left" v-if="scope.row.url" @click="goUrl(scope.row)">{{scope.row.url}}</div>
             </template>
           </el-table-column>
           <el-table-column prop="updateTime" label="更新时间"></el-table-column>
