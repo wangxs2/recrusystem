@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import {screenHeight,formatDate,curDataTime} from "../../utils/util"
+import {screenHeight,formatDate,curDataTime,getCurrentMonthFirst,getCurrentMonthLast} from "../../utils/util"
 export default {
   name: 'dataStatistic',
   components: {
@@ -146,8 +146,8 @@ export default {
       this.getTableData(this.params)
     } else {
       this.params={
-        startDate:'2020-3-1',
-        endDate:'2020-3-31',
+        startDate:getCurrentMonthFirst(),
+        endDate:getCurrentMonthLast(),
       }
       this.getTableData(this.params)
     }
@@ -163,8 +163,8 @@ export default {
         this.params.startDate=this.startEndTate[0]
         this.params.endDate=this.startEndTate[1]
       } else {
-        this.params.startDate='2020-3-1'
-        this.params.endDate='2020-3-31'
+        this.params.startDate=getCurrentMonthFirst()
+        this.params.endDate=getCurrentMonthLast()
       }
       
       this.getTableData(this.params)
