@@ -87,7 +87,7 @@ export default {
   data () {
     return {
       curHeight:null,
-      startEndTate:[],
+      startEndTate:[getCurrentMonthFirst(),getCurrentMonthLast()],
       params:{},
       myChart: '',
       tableData: [],
