@@ -99,7 +99,8 @@ export function delCookie(name) {
     document.cookie = name + '=' + cval + ';expires=' + exp.toGMTString()
 }
 export function screenHeight(){
-  var curHeight=document.body.clientHeight
+  // var curHeight=document.body.clientHeight
+  var curHeight=document.getElementById("app").clientHeight
   console.log(curHeight)
   return curHeight
 }

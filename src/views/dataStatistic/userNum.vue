@@ -8,7 +8,7 @@
         <div class="search-input search-btn" @click="handleDownloadExcel">导出</div>
       </div>
       <div class="table-wrapper table-wrapper-border">
-        <el-table :data="tableData" border style="width: 100%" :height="curHeight-160">
+        <el-table :data="tableData" ref="table" border style="width: 100%" :height="curHeight">
           <el-table-column prop="date" label="日期">
             <!-- <template slot-scope="scope">
               <div v-if="scope.row.date">{{scope.row.date.substring(0,10)}}</div>
@@ -74,7 +74,7 @@ export default {
   },
   data () {
     return {
-      curHeight:0,
+      curHeight:null,
       myChart: '',
       tableData: [],
       tableDataExecl:[]
@@ -82,7 +82,8 @@ export default {
   },
   mounted () {
       
-    this.curHeight=screenHeight()
+    // this.curHeight=screenHeight()
+    this.curHeight = window.innerHeight - this.$refs.table.$el.offsetTop - 30;
   },
   created () {
     this.getTableData()

@@ -8,7 +8,7 @@
         <div class="search-input search-btn" @click="handleDownloadExcel">导出</div>
       </div>
       <div class="table-wrapper table-wrapper-border">
-        <el-table :data="tableData" border style="width: 100%" :height="curHeight-160">
+        <el-table :data="tableData" ref="table" border style="width: 100%" :height="curHeight">
           <el-table-column prop="date" label="日期">
             <template slot-scope="scope">
               <div v-if="scope.row.date">{{scope.row.date.substring(0,10)}}</div>
@@ -64,33 +64,29 @@
             </el-table-column>
           </el-table-column>
           <el-table-column label="我要出力">
-            <el-table-column prop="name" label="法律咨询">
-              <el-table-column prop="newEntCFl" label="新增"></el-table-column>
-              <el-table-column prop="totalEntCFl" label="累计"></el-table-column>
+            <el-table-column prop="name" label="企业">
+              <el-table-column prop="newEntCQy" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCQy" label="累计"></el-table-column>
             </el-table-column>
-            <el-table-column prop="name" label="交通运输">
-              <el-table-column prop="newEntCJt" label="新增"></el-table-column>
-              <el-table-column prop="totalEntCJt" label="累计"></el-table-column>
+            <el-table-column prop="name" label="个人">
+              <el-table-column prop="newEntCQy" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCQy" label="累计"></el-table-column>
             </el-table-column>
-            <el-table-column prop="name" label="健康体检">
-              <el-table-column prop="newEntCJk" label="新增"></el-table-column>
-              <el-table-column prop="totalEntCJk" label="累计"></el-table-column>
+            <el-table-column prop="name" label="志愿者团队">
+              <el-table-column prop="newEntCZy" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCZy" label="累计"></el-table-column>
             </el-table-column>
-            <el-table-column prop="name" label="面试测评">
-              <el-table-column prop="newEntCMs" label="新增"></el-table-column>
-              <el-table-column prop="totalEntCMs" label="累计"></el-table-column>
+            <el-table-column prop="name" label="工商联">
+              <el-table-column prop="newEntCGs" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCGs" label="累计"></el-table-column>
             </el-table-column>
-            <el-table-column prop="name" label="劳务派遣">
-              <el-table-column prop="newEntCLw" label="新增"></el-table-column>
-              <el-table-column prop="totalEntCLw" label="累计"></el-table-column>
+            <el-table-column prop="name" label="民间组织">
+              <el-table-column prop="newEntCMj" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCMj" label="累计"></el-table-column>
             </el-table-column>
-            <el-table-column prop="name" label="保险服务">
-              <el-table-column prop="newEntCBx" label="新增"></el-table-column>
-              <el-table-column prop="totalEntCBx" label="累计"></el-table-column>
-            </el-table-column>
-            <el-table-column prop="name" label="优惠政策">
-              <el-table-column prop="newEntCYh" label="新增"></el-table-column>
-              <el-table-column prop="totalEntCYh" label="累计"></el-table-column>
+            <el-table-column prop="name" label="政府部门">
+              <el-table-column prop="newEntCZf" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCZf" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="其他">
               <el-table-column prop="newEntCQt" label="新增"></el-table-column>
@@ -116,7 +112,7 @@ export default {
   },
   data () {
     return {
-      curHeight:0,
+      curHeight:null,
       myChart: '',
       tableData: [],
       tableDataExecl:[]
@@ -124,7 +120,8 @@ export default {
   },
   mounted () {
       
-    this.curHeight=screenHeight()
+    // this.curHeight=screenHeight()
+    this.curHeight = window.innerHeight - this.$refs.table.$el.offsetTop - 30;
 
   },
   created () {
@@ -200,8 +197,6 @@ export default {
             '',
             '',
             '',
-            '',
-            '',
             '备注说明'
           ]
         ];
@@ -230,19 +225,17 @@ export default {
             '',
             '其他',
             '',
-            '法律咨询',
+            '企业',
             '',
-            '交通运输',
+            '个人',
             '',
-            '健康体检',
+            '志愿者团队',
             '',
-            '面试测评',
+            '工商联',
             '',
-            '劳务派遣',
+            '民间组织',
             '',
-            '保险服务',
-            '',
-            '优惠政策',
+            '政府部门',
             '',
             '其他',
             '',
@@ -287,19 +280,20 @@ export default {
           "累计",
           "新增",
           "累计",
-          "新增",
-          "累计",
           ''
         ];
-        const filterVal = [ 'date','newEntAMy','totalEntAMy','newEntAGsl','totalEntAGsl','newEntAGq','totalEntAGq','newEntAGt','totalEntAGt','newEntAZf','totalEntAZf','newEntASh','totalEntASh','newEntBDf','totalEntBDf','newEntBGsl','totalEntBGsl','newEntBSh','totalEntBSh','newEntBRc','totalEntBRc','newEntBQt','totalEntBQt','newEntCFl','totalEntCFl','newEntCJt','totalEntCJt','newEntCJk','totalEntCJk','newEntCMs','totalEntCMs','newEntCLw','totalEntCLw','newEntCBx','totalEntCBx','newEntCYh','totalEntCYh','newEntCQt','totalEntCQt','remark']
+        const filterVal = [ 'date','newEntAMy','totalEntAMy','newEntAGsl','totalEntAGsl','newEntAGq','totalEntAGq','newEntAGt','totalEntAGt','newEntAZf','totalEntAZf','newEntASh','totalEntASh','newEntBDf','totalEntBDf','newEntBGsl','totalEntBGsl','newEntBSh','totalEntBSh','newEntBRc','totalEntBRc','newEntBQt','totalEntBQt',
+
+        'newEntCQy','totalEntCQy','newEntCQy','totalEntCQy','newEntCZy','totalEntCZy','newEntCGs','totalEntCGs','newEntCMj','totalEntCMj','newEntCZf','totalEntCZf','newEntCQt','totalEntCQt','remark']
+        // console.log(multiHeader[0].length,multiHeader2[0].length,tHeader.length,filterVal.length)
         const data = this.formatJson(filterVal, this.tableData);
        //进行所有表头的单元格合并，建议一行一行来，不然容易整乱
         const merges = [
           "A1:A3",
           'B1:M1',
           'N1:W1',
-          'X1:AM1',
-          'AN1:AN3',
+          'X1:AK1',
+          'AL1:AL3',
           'B2:C2',
           'D2:E2',
           'F2:G2',
@@ -318,7 +312,6 @@ export default {
           'AF2:AG2',
           'AH2:AI2',
           'AJ2:AK2',
-          'AL2:AM2',
         ]
  
         excel.export_json_to_excel({
