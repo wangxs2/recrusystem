@@ -5,6 +5,18 @@
     </div>
     <div class="table-search-wrapper">
       <div class="search-wrapper">
+        <div class="search-input">
+          <span>起始时间-结束时间:</span>
+          <el-date-picker
+            v-model="startEndTate"
+            type="daterange"
+            value-format="yyyy-MM-dd"
+            range-separator="-"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期">
+          </el-date-picker>
+        </div>
+        <div class="search-input search-btn" @click="search">搜索</div>
         <div class="search-input search-btn" @click="handleDownloadExcel">导出</div>
       </div>
       <div class="table-wrapper table-wrapper-border">
@@ -75,6 +87,8 @@ export default {
   data () {
     return {
       curHeight:null,
+      startEndTate:[],
+      params:{},
       myChart: '',
       tableData: [],
       tableDataExecl:[]
@@ -84,13 +98,41 @@ export default {
       
     // this.curHeight=screenHeight()
     this.curHeight = window.innerHeight - this.$refs.table.$el.offsetTop - 30;
+    let searchData = JSON.parse(sessionStorage.getItem("searchData"))
+    if (searchData){
+      this.params=searchData
+      if (searchData.startDate&&searchData.endDate){
+
+        this.startEndTate=[searchData.startDate,searchData.endDate]
+      }
+      this.getTableData(this.params)
+    } else {
+      this.params={
+        startDate:'2020-3-1',
+        endDate:'2020-3-31',
+      }
+      this.getTableData(this.params)
+    }
   },
   created () {
-    this.getTableData()
+    // this.getTableData()
   },
   methods: {
-    getTableData(){
-       this.$fetchGet("count/userNum").then(res => {
+    search(){
+      this.tableData=[]
+      if (this.startEndTate&&this.startEndTate.length>0){
+        this.params.startDate=this.startEndTate[0]
+        this.params.endDate=this.startEndTate[1]
+      } else {
+        this.params.startDate='2020-3-1'
+        this.params.endDate='2020-3-31'
+      }
+      
+      this.getTableData(this.params)
+      sessionStorage.setItem("searchData",JSON.stringify(this.params))
+    },
+    getTableData(params){
+       this.$fetchGet("count/userNum",params).then(res => {
           this.tableData=res.data
           if (this.tableData&&this.tableData.length>0){
             this.tableData.forEach(item => {
