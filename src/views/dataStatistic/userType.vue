@@ -81,8 +81,8 @@
               <el-table-column prop="totalEntCQy" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="个人">
-              <el-table-column prop="newEntCQy" label="新增"></el-table-column>
-              <el-table-column prop="totalEntCQy" label="累计"></el-table-column>
+              <el-table-column prop="newEntCGr" label="新增"></el-table-column>
+              <el-table-column prop="totalEntCGr" label="累计"></el-table-column>
             </el-table-column>
             <el-table-column prop="name" label="志愿者团队">
               <el-table-column prop="newEntCZy" label="新增"></el-table-column>
@@ -327,7 +327,7 @@ export default {
         ];
         const filterVal = [ 'date','newEntAMy','totalEntAMy','newEntAGsl','totalEntAGsl','newEntAGq','totalEntAGq','newEntAGt','totalEntAGt','newEntAZf','totalEntAZf','newEntASh','totalEntASh','newEntBDf','totalEntBDf','newEntBGsl','totalEntBGsl','newEntBSh','totalEntBSh','newEntBRc','totalEntBRc','newEntBQt','totalEntBQt',
 
-        'newEntCQy','totalEntCQy','newEntCQy','totalEntCQy','newEntCZy','totalEntCZy','newEntCGs','totalEntCGs','newEntCMj','totalEntCMj','newEntCZf','totalEntCZf','newEntCQt','totalEntCQt','remark']
+        'newEntCQy','totalEntCQy','newEntCGr','totalEntCGr','newEntCZy','totalEntCZy','newEntCGs','totalEntCGs','newEntCMj','totalEntCMj','newEntCZf','totalEntCZf','newEntCQt','totalEntCQt','remark']
         // console.log(multiHeader[0].length,multiHeader2[0].length,tHeader.length,filterVal.length)
         const data = this.formatJson(filterVal, this.tableData);
        //进行所有表头的单元格合并，建议一行一行来，不然容易整乱
