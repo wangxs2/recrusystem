@@ -36,6 +36,7 @@
                     <el-menu-item-group title="">
                         <el-menu-item index="/hospitalInfo/xu"><img src="../../assets/images/icon_1_1.png"  alt="" />需方</el-menu-item>
                         <el-menu-item index="/hospitalInfo/gong"><img src="../../assets/images/icon_1_2.png"  alt="" />供方</el-menu-item>
+                        <el-menu-item index="/hospitalInfo/school"><img src="../../assets/images/icon_1_4.png"  alt="" />高校</el-menu-item>
                         <el-menu-item index="/hospitalInfo/minjianOrig"><img src="../../assets/images/icon_1_3.png"  alt="" />出力方</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
@@ -47,6 +48,7 @@
                     <el-menu-item-group title="">
                         <el-menu-item index="/luruInfo/recruitUse"><img src="../../assets/images/icon_2_1.png"  alt="" />我要用工</el-menu-item>
                         <el-menu-item index="/luruInfo/worker"><img src="../../assets/images/icon_2_2.png"  alt="" />我有工人</el-menu-item>
+                        <el-menu-item index="/luruInfo/campus"><img src="../../assets/images/icon_2_4.png"  alt="" />校联招聘</el-menu-item>
                         <el-menu-item index="/luruInfo/output"><img src="../../assets/images/icon_2_3.png"  alt="" />我要出力</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>

@@ -14,10 +14,12 @@ import userType from '@/views/dataStatistic/userType.vue'
 import luruInfo from '@/views/luruInfo/index.vue'
 import worker from '@/views/luruInfo/gong.vue'
 import recruitUse from '@/views/luruInfo/xu.vue'
+import campus from '@/views/luruInfo/campus.vue'
 import output from '@/views/luruInfo/minjianOrig.vue'
 import hospitalInfo from '@/views/hospitalInfo/index.vue'
 import gong1 from '@/views/hospitalInfo/gong.vue'
 import xu1 from '@/views/hospitalInfo/xu.vue'
+import school from '@/views/hospitalInfo/school.vue'
 import minjianOrig1 from '@/views/hospitalInfo/minjianOrig.vue'
 Vue.use(Router)
 const routerPush = Router.prototype.push
@@ -63,6 +65,13 @@ export default new Router({
 
                         },
                         {
+                            path: '/hospitalInfo/school',
+                            name: 'school',
+                            component: school,
+                            curMenuName:"发布信息维护/高校"
+
+                        },
+                        {
                             path: '/hospitalInfo/minjianOrig',
                             name: 'minjianOrig1',
                             component: minjianOrig1,
@@ -90,7 +99,13 @@ export default new Router({
                             name: 'worker',
                             component: worker,
                             curMenuName:"录入信息维护/我有工人"
-
+                            
+                        },
+                        {
+                            path: '/luruInfo/campus',
+                            name: 'campus',
+                            component: campus,
+                            curMenuName:"录入信息维护/校联招聘"
                         },
                         {
                             path: '/luruInfo/output',

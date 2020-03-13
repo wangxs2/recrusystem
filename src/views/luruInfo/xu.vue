@@ -56,8 +56,9 @@
           <el-table-column prop="serviceRange" label="所属行业领域"></el-table-column>
           <el-table-column prop="type" label="机构类型"></el-table-column>
           <el-table-column prop="detail" label="用工需求" :show-overflow-tooltip="true"></el-table-column>
+          <el-table-column prop="needsNum" label="总数"></el-table-column>
           <el-table-column prop="descr" label="需求说明" :show-overflow-tooltip="true"></el-table-column>
-          <el-table-column prop="createTime" label="发布时间">
+          <el-table-column prop="createT" label="发布时间">
             <!-- <template slot-scope="scope">
               <div v-if="scope.row.createTime">{{scope.row.createTime.substring(0,10)}}</div>
             </template> -->
@@ -481,8 +482,8 @@ export default {
                 })
                 item.linkPeopleList=item.linkPeopleList
               }
-              if (item.createTime){
-                item.createTime=formatDate(item.createTime)
+              if (item.createT){
+                item.createT=formatDate(item.createT)
               }
               
             })
@@ -493,8 +494,8 @@ export default {
     handlderive() {
       this.tableExecl=1
         import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = [ '机构名称','类型', '省', '市', '详细地址', '所属行业领域', '机构类型', '用工需求', '需求说明', '发布时间','信息链接','联系人','图片链接','审核状态','审核意见','发布状态']
-          const filterVal = [ 'name',"materialType", 'province', 'city', 'address', 'serviceRange', 'type', 'detail', 'descr', 'createTime','sourceLink','linkPeople','attachment','isValid','checkDescr','hasShow']
+          const tHeader = [ '机构名称','类型', '省', '市', '详细地址', '所属行业领域', '机构类型', '用工需求','总数', '需求说明', '发布时间','信息链接','联系人','图片链接','审核状态','审核意见','发布状态']
+          const filterVal = [ 'name',"materialType", 'province', 'city', 'address', 'serviceRange', 'type', 'detail', 'needsNum', 'descr', 'createT','sourceLink','linkPeople','attachment','isValid','checkDescr','hasShow']
           const data = this.formatJson(filterVal, this.tableDataExecl)
           excel.export_json_to_excel({
             header: tHeader,
@@ -966,8 +967,8 @@ export default {
                 })
                 item.linkPeopleList=item.linkPeopleList
               }
-              if (item.createTime){
-                item.createTime=formatDate(item.createTime)
+              if (item.createT){
+                item.createT=formatDate(item.createT)
               }
               
             })

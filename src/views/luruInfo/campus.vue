@@ -1,7 +1,7 @@
 <template>
-  <div class="gong">
+  <div class="campus">
     <div class="cur-menu-name">
-        <span>录入信息维护/我有工人</span>
+        <span>录入信息维护/校联招聘</span>
     </div>
     <div class="table-search-wrapper">
       <div class="search-wrapper">
@@ -18,7 +18,7 @@
         </div>
         <div class="search-input">
           <span>内容:</span>
-          <el-input v-model="content" placeholder="请输入地区、机构或岗位名称" clearable></el-input>
+          <el-input v-model="content" placeholder="请输入地区、学校或岗位名称" clearable></el-input>
           <!-- <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择岗位名称" @select="handleSelect" clearable></el-autocomplete> -->
         </div>
         <!-- <div class="search-input">
@@ -39,30 +39,31 @@
       <div class="table-wrapper">
         <el-table :data="tableData.slice((page-1)*pageSize,page*pageSize)" :height="curHeight" ref="table" style="width: 100%">
           <el-table-column type="index" label="序号" width="50"></el-table-column>
-          <el-table-column prop="name" label="机构名称">
+          <el-table-column prop="name" label="学校名称">
           </el-table-column>
           <el-table-column prop="materialType" label="类型">
             <template slot-scope="scope">
               <span v-if="scope.row.materialType==1">需求方</span>
               <span v-if="scope.row.materialType==2">提供方</span>
               <span v-if="scope.row.materialType==3">出力方</span>
+              <span v-if="scope.row.materialType==4">高校</span>
             </template>
           </el-table-column>
           <el-table-column prop="province" label="省"></el-table-column>
           <el-table-column prop="city" label="市"></el-table-column>
           <el-table-column prop="address" label="详细地址"></el-table-column>
 
-          <el-table-column prop="serviceRange" label="所属行业领域"></el-table-column>
-          <el-table-column prop="type" label="机构类型"></el-table-column>
-          <el-table-column prop="detail" label="供应工种" :show-overflow-tooltip="true"></el-table-column>
+          <el-table-column prop="serviceRange" label="办学模式"></el-table-column>
+          <el-table-column prop="type" label="学校类型"></el-table-column>
+          <el-table-column prop="detail" label="学生总数" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column prop="needsNum" label="总数"></el-table-column>
           <el-table-column prop="createT" label="预计到岗时间">
             <!-- <template slot-scope="scope">
               <div v-if="scope.row.createTime">{{scope.row.createTime.substring(0,10)}}</div>
             </template> -->
           </el-table-column>
-          <el-table-column prop="sourceLink" label="信息链接"></el-table-column>
-          <el-table-column prop="descr" label="具体描述" :show-overflow-tooltip="true"></el-table-column>
+          <el-table-column prop="sourceLink" label="网站链接"></el-table-column>
+          <el-table-column prop="descr" label="具体说明" :show-overflow-tooltip="true"></el-table-column>
 
           <el-table-column prop="linkPeople" label="联系人">
             <template slot-scope="scope">
@@ -160,7 +161,7 @@
 <script>
 import {screenHeight,formatDate,curDataTime} from "../../utils/util"
 export default {
-  name: 'worker',
+  name: 'campus',
   components: {
   },
   data () {
@@ -244,7 +245,7 @@ export default {
       this.getTableData(this.params)
     } else {
       this.params={
-        materialType:2,
+        materialType:4,
         page:this.page,
         pageSize:this.pageSize
       }
@@ -260,7 +261,7 @@ export default {
       this.getTableDataExecal(x)
     } else {
       let x={
-        materialType:2,
+        materialType:4,
       }
       this.getTableDataExecal(x)
     }
@@ -268,7 +269,7 @@ export default {
   },
   created () {
     // this.params={
-    //   materialType:2,
+    //   materialType:4,
     //   page:this.page,
     //   pageSize:this.pageSize
     // }
@@ -276,7 +277,7 @@ export default {
     this.getNeedsNameList()
 
     // let x={
-    //   materialType:2,
+    //   materialType:4,
     // }
     // this.getTableDataExecal(x)
   },
@@ -309,7 +310,7 @@ export default {
     handlderive() {
       this.tableExecl=1
         import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = [ '机构名称','类型', '省', '市', '详细地址', '所属行业领域', '机构类型', '供应工种','总数', '预计到岗时间','信息链接', '具体描述','联系人','图片链接','审核状态','审核意见','发布状态']
+          const tHeader = [ '学校名称','类型', '省', '市', '详细地址', '办学模式', '学校类型', '学生总数','总数', '预计到岗时间','网站链接', '具体说明','联系人','图片链接','审核状态','审核意见','发布状态']
           const filterVal = ['name',"materialType", 'province', 'city', 'address', 'serviceRange', 'type', 'detail', 'needsNum', 'createT','sourceLink', 'descr','linkPeople','attachment','isValid','checkDescr','hasShow']
           const data = this.formatJson(filterVal, this.tableDataExecl)
           excel.export_json_to_excel({
@@ -331,6 +332,8 @@ export default {
               v[j]="提供方"
             } else if(v[j]==3){
               v[j]="出力方"
+            } else if(v[j]==4){
+              v[j]="高校"
             }
             return v[j]
           }
@@ -411,7 +414,7 @@ export default {
         this.getTableData(this.params)
       } else {
         this.params={
-          materialType:2,
+          materialType:4,
           page:this.page,
           pageSize:this.pageSize
         }
@@ -427,7 +430,7 @@ export default {
         this.getTableDataExecal(x)
       } else {
         let x={
-          materialType:2,
+          materialType:4,
         }
         this.getTableDataExecal(x)
       }
@@ -435,7 +438,7 @@ export default {
 
 
       // this.params={
-      //   materialType:2,
+      //   materialType:4,
       //   page:this.page,
       //   pageSize:this.pageSize
       // }
@@ -467,7 +470,7 @@ export default {
     },
     getNeedsNameList(){
       this.$fetchGet("material/getNeedsName",{
-        materialType:2
+        materialType:4
       }).then(res => {
         if (res.data&&res.data.length>0){
           let obj={}
@@ -498,7 +501,7 @@ export default {
       this.page=1
       this.tableData=[]
       this.params={
-        materialType:2,
+        materialType:4,
         content:this.content,
         // status:this.acceptInfo,
         page:this.page,
@@ -519,7 +522,7 @@ export default {
       })
       if (this.tableExecl=1){
         let x={
-          materialType:2,
+          materialType:4,
           content:this.content,
           // status:this.acceptInfo,
 
@@ -591,7 +594,7 @@ export default {
 
 <style lang="scss">
 @import '../../assets/css/common.scss';
-.gong{
+.campus{
   .search-input{
     .el-input{
       width:350px;
