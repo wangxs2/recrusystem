@@ -233,7 +233,6 @@ export default {
     // this.curHeight=screenHeight()
     this.curHeight = window.innerHeight - this.$refs.table.$el.offsetTop - 80;
     let searchData = JSON.parse(sessionStorage.getItem("searchData"))
-    let searchData1 = JSON.parse(sessionStorage.getItem("searchData1"))
 
     if (searchData){
       this.params=searchData
@@ -250,20 +249,6 @@ export default {
         pageSize:this.pageSize
       }
       this.getTableData(this.params)
-    }
-    if (searchData1){
-      let x=searchData1
-      this.content=searchData1.content
-      if (searchData1.startDate&&searchData1.endDate){
-
-        this.startEndTate=[searchData1.startDate,searchData1.endDate]
-      }
-      this.getTableDataExecal(x)
-    } else {
-      let x={
-        materialType:3,
-      }
-      this.getTableDataExecal(x)
     }
 
   },
@@ -307,23 +292,40 @@ export default {
               
             })
           }
+
+
+          import('@/vendor/Export2Excel').then(excel => {
+            const tHeader = [ '机构名称','类型', '省', '市', '详细地址', '出力范围', '服务覆盖范围', '起始日期', '结束日期', '机构类型',"信息链接","具体描述",'联系人','图片链接','审核状态','审核意见','发布状态']
+            const filterVal = [ 'name',"materialType", 'province', 'city', 'address', 'serviceType', 'serviceRange', 'startTime', 'endTime', 'type',"sourceLink","descr",'linkPeople','attachment','isValid','checkDescr','hasShow']
+            const data = this.formatJson(filterVal, this.tableDataExecl)
+            excel.export_json_to_excel({
+              header: tHeader,
+              data,
+              filename: curDataTime()+"导出记录",
+              autoWidth: true,
+              // filename: this.filename
+            })
+          })
       })
 
     },
     handlderive() {
       this.tableExecl=1
-        import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = [ '机构名称','类型', '省', '市', '详细地址', '出力范围', '服务覆盖范围', '起始日期', '结束日期', '机构类型',"信息链接","具体描述",'联系人','图片链接','审核状态','审核意见','发布状态']
-          const filterVal = [ 'name',"materialType", 'province', 'city', 'address', 'serviceType', 'serviceRange', 'startTime', 'endTime', 'type',"sourceLink","descr",'linkPeople','attachment','isValid','checkDescr','hasShow']
-          const data = this.formatJson(filterVal, this.tableDataExecl)
-          excel.export_json_to_excel({
-            header: tHeader,
-            data,
-            filename: curDataTime()+"导出记录",
-            autoWidth: true,
-            // filename: this.filename
-          })
-        })
+      let searchData1 = JSON.parse(sessionStorage.getItem("searchData1"))
+      if (searchData1){
+        let x=searchData1
+        this.content=searchData1.content
+        if (searchData1.startDate&&searchData1.endDate){
+
+          this.startEndTate=[searchData1.startDate,searchData1.endDate]
+        }
+        this.getTableDataExecal(x)
+      } else {
+        let x={
+          materialType:3,
+        }
+        this.getTableDataExecal(x)
+      }
     },
     formatJson(filterVal, jsonData) {
       return jsonData.map(v =>
@@ -537,7 +539,7 @@ export default {
           x.startDate=''
           x.endDate=''
         }
-        this.getTableDataExecal(x)
+        // this.getTableDataExecal(x)
         sessionStorage.setItem("searchData1",JSON.stringify(x))
 
       }

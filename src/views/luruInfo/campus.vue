@@ -18,7 +18,7 @@
         </div>
         <div class="search-input">
           <span>内容:</span>
-          <el-input v-model="content" placeholder="请输入地区、学校或岗位名称" clearable></el-input>
+          <el-input v-model="content" placeholder="请输入地区、学校或专业名称" clearable></el-input>
           <!-- <el-autocomplete v-model="goodsName" :fetch-suggestions="querySearchAsync" placeholder="请选择岗位名称" @select="handleSelect" clearable></el-autocomplete> -->
         </div>
         <!-- <div class="search-input">
@@ -57,7 +57,12 @@
           <el-table-column prop="type" label="学校类型"></el-table-column>
           <el-table-column prop="detail" label="学生总数" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column prop="needsNum" label="总数"></el-table-column>
-          <el-table-column prop="createT" label="预计到岗时间">
+          <el-table-column prop="createTime" label="预计到岗时间">
+            <!-- <template slot-scope="scope">
+              <div v-if="scope.row.createTime">{{scope.row.createTime.substring(0,10)}}</div>
+            </template> -->
+          </el-table-column>
+          <el-table-column prop="createT" label="提交时间">
             <!-- <template slot-scope="scope">
               <div v-if="scope.row.createTime">{{scope.row.createTime.substring(0,10)}}</div>
             </template> -->
@@ -233,7 +238,6 @@ export default {
     // this.curHeight=screenHeight()
     this.curHeight = window.innerHeight - this.$refs.table.$el.offsetTop - 80;
     let searchData = JSON.parse(sessionStorage.getItem("searchData"))
-    let searchData1 = JSON.parse(sessionStorage.getItem("searchData1"))
 
     if (searchData){
       this.params=searchData
@@ -250,20 +254,6 @@ export default {
         pageSize:this.pageSize
       }
       this.getTableData(this.params)
-    }
-    if (searchData1){
-      let x=searchData1
-      this.content=searchData1.content
-      if (searchData1.startDate&&searchData1.endDate){
-
-        this.startEndTate=[searchData1.startDate,searchData1.endDate]
-      }
-      this.getTableDataExecal(x)
-    } else {
-      let x={
-        materialType:4,
-      }
-      this.getTableDataExecal(x)
     }
 
   },
@@ -301,26 +291,45 @@ export default {
               if (item.createT){
                 item.createT=formatDate(item.createT)
               }
+              if (item.createTime){
+                item.createTime=formatDate(item.createTime)
+              }
               
             })
           }
+          
+          import('@/vendor/Export2Excel').then(excel => {
+            const tHeader = [ '学校名称','类型', '省', '市', '详细地址', '办学模式', '学校类型', '学生总数','总数', '预计到岗时间', '提交时间','网站链接', '具体说明','联系人','图片链接','审核状态','审核意见','发布状态']
+            const filterVal = ['name',"materialType", 'province', 'city', 'address', 'serviceRange', 'type', 'detail', 'needsNum','createTime', 'createT','sourceLink', 'descr','linkPeople','attachment','isValid','checkDescr','hasShow']
+            const data = this.formatJson(filterVal, this.tableDataExecl)
+            excel.export_json_to_excel({
+              header: tHeader,
+              data,
+              filename: curDataTime()+"导出记录",
+              autoWidth: true,
+              // filename: this.filename
+            })
+          })
       })
 
     },
     handlderive() {
       this.tableExecl=1
-        import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = [ '学校名称','类型', '省', '市', '详细地址', '办学模式', '学校类型', '学生总数','总数', '预计到岗时间','网站链接', '具体说明','联系人','图片链接','审核状态','审核意见','发布状态']
-          const filterVal = ['name',"materialType", 'province', 'city', 'address', 'serviceRange', 'type', 'detail', 'needsNum', 'createT','sourceLink', 'descr','linkPeople','attachment','isValid','checkDescr','hasShow']
-          const data = this.formatJson(filterVal, this.tableDataExecl)
-          excel.export_json_to_excel({
-            header: tHeader,
-            data,
-            filename: curDataTime()+"导出记录",
-            autoWidth: true,
-            // filename: this.filename
-          })
-        })
+      let searchData1 = JSON.parse(sessionStorage.getItem("searchData1"))
+      if (searchData1){
+        let x=searchData1
+        this.content=searchData1.content
+        if (searchData1.startDate&&searchData1.endDate){
+
+          this.startEndTate=[searchData1.startDate,searchData1.endDate]
+        }
+        this.getTableDataExecal(x)
+      } else {
+        let x={
+          materialType:4,
+        }
+        this.getTableDataExecal(x)
+      }
     },
     formatJson(filterVal, jsonData) {
       return jsonData.map(v =>
@@ -534,7 +543,7 @@ export default {
           x.startDate=''
           x.endDate=''
         }
-        this.getTableDataExecal(x)
+        // this.getTableDataExecal(x)
         sessionStorage.setItem("searchData1",JSON.stringify(x))
 
       }
@@ -558,6 +567,9 @@ export default {
               }
               if (item.createT){
                 item.createT=formatDate(item.createT)
+              }
+              if (item.createTime){
+                item.createTime=formatDate(item.createTime)
               }
               
             })

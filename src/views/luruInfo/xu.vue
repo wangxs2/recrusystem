@@ -58,7 +58,12 @@
           <el-table-column prop="detail" label="用工需求" :show-overflow-tooltip="true"></el-table-column>
           <el-table-column prop="needsNum" label="总数"></el-table-column>
           <el-table-column prop="descr" label="需求说明" :show-overflow-tooltip="true"></el-table-column>
-          <el-table-column prop="createT" label="发布时间">
+          <el-table-column prop="createTime" label="发布时间">
+            <!-- <template slot-scope="scope">
+              <div v-if="scope.row.createTime">{{scope.row.createTime.substring(0,10)}}</div>
+            </template> -->
+          </el-table-column>
+          <el-table-column prop="createT" label="提交时间">
             <!-- <template slot-scope="scope">
               <div v-if="scope.row.createTime">{{scope.row.createTime.substring(0,10)}}</div>
             </template> -->
@@ -417,7 +422,6 @@ export default {
     // this.curHeight=screenHeight()
     this.curHeight = window.innerHeight - this.$refs.table.$el.offsetTop - 80;
     let searchData = JSON.parse(sessionStorage.getItem("searchData"))
-    let searchData1 = JSON.parse(sessionStorage.getItem("searchData1"))
 
     if (searchData){
       this.params=searchData
@@ -434,20 +438,6 @@ export default {
         pageSize:this.pageSize
       }
       this.getTableData(this.params)
-    }
-    if (searchData1){
-      let x=searchData1
-      this.content=searchData1.content
-      if (searchData1.startDate&&searchData1.endDate){
-
-        this.startEndTate=[searchData1.startDate,searchData1.endDate]
-      }
-      this.getTableDataExecal(x)
-    } else {
-      let x={
-        materialType:1,
-      }
-      this.getTableDataExecal(x)
     }
 
   },
@@ -485,26 +475,49 @@ export default {
               if (item.createT){
                 item.createT=formatDate(item.createT)
               }
+              if (item.createTime){
+                item.createTime=formatDate(item.createTime)
+              }
               
             })
+
+
+
+            
           }
+          
+          import('@/vendor/Export2Excel').then(excel => {
+            const tHeader = [ '机构名称','类型', '省', '市', '详细地址', '所属行业领域', '机构类型', '用工需求','总数', '需求说明', '发布时间','提交时间','信息链接','联系人','图片链接','审核状态','审核意见','发布状态']
+            const filterVal = [ 'name',"materialType", 'province', 'city', 'address', 'serviceRange', 'type', 'detail', 'needsNum', 'descr', 'createTime', 'createT','sourceLink','linkPeople','attachment','isValid','checkDescr','hasShow']
+            const data = this.formatJson(filterVal, this.tableDataExecl)
+            excel.export_json_to_excel({
+              header: tHeader,
+              data,
+              filename: curDataTime()+"导出记录",
+              autoWidth: true,
+              // filename: this.filename
+            })
+          })
       })
 
     },
     handlderive() {
       this.tableExecl=1
-        import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = [ '机构名称','类型', '省', '市', '详细地址', '所属行业领域', '机构类型', '用工需求','总数', '需求说明', '发布时间','信息链接','联系人','图片链接','审核状态','审核意见','发布状态']
-          const filterVal = [ 'name',"materialType", 'province', 'city', 'address', 'serviceRange', 'type', 'detail', 'needsNum', 'descr', 'createT','sourceLink','linkPeople','attachment','isValid','checkDescr','hasShow']
-          const data = this.formatJson(filterVal, this.tableDataExecl)
-          excel.export_json_to_excel({
-            header: tHeader,
-            data,
-            filename: curDataTime()+"导出记录",
-            autoWidth: true,
-            // filename: this.filename
-          })
-        })
+      let searchData1 = JSON.parse(sessionStorage.getItem("searchData1"))
+      if (searchData1){
+        let x=searchData1
+        this.content=searchData1.content
+        if (searchData1.startDate&&searchData1.endDate){
+
+          this.startEndTate=[searchData1.startDate,searchData1.endDate]
+        }
+        this.getTableDataExecal(x)
+      } else {
+        let x={
+          materialType:1,
+        }
+        this.getTableDataExecal(x)
+      }
     },
     formatJson(filterVal, jsonData) {
       return jsonData.map(v =>
@@ -944,7 +957,7 @@ export default {
           x.startDate=''
           x.endDate=''
         }
-        this.getTableDataExecal(x)
+        // this.getTableDataExecal(x)
         sessionStorage.setItem("searchData1",JSON.stringify(x))
 
       }
@@ -969,6 +982,9 @@ export default {
               }
               if (item.createT){
                 item.createT=formatDate(item.createT)
+              }
+              if (item.createTime){
+                item.createTime=formatDate(item.createTime)
               }
               
             })
