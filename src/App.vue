@@ -7,7 +7,8 @@
 <script>
 
 export default {
-  name: 'app',data() {
+  name: 'app',
+  data() {
     return {
       currentTime: new Date().getTime() 
     };
