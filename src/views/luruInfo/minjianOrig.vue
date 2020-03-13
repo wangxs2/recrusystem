@@ -169,7 +169,7 @@
 <script>
 import {screenHeight,formatDate,curDataTime} from "../../utils/util"
 export default {
-  name: 'output',
+  name: 'output1',
   components: {
   },
   data () {

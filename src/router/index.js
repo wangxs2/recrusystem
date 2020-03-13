@@ -15,7 +15,7 @@ import luruInfo from '@/views/luruInfo/index.vue'
 import worker from '@/views/luruInfo/gong.vue'
 import recruitUse from '@/views/luruInfo/xu.vue'
 import campus from '@/views/luruInfo/campus.vue'
-import output from '@/views/luruInfo/minjianOrig.vue'
+import output1 from '@/views/luruInfo/minjianOrig.vue'
 import hospitalInfo from '@/views/hospitalInfo/index.vue'
 import gong1 from '@/views/hospitalInfo/gong.vue'
 import xu1 from '@/views/hospitalInfo/xu.vue'
@@ -108,9 +108,9 @@ export default new Router({
                             curMenuName:"录入信息维护/校联招聘"
                         },
                         {
-                            path: '/luruInfo/output',
-                            name: 'output',
-                            component: output,
+                            path: '/luruInfo/output1',
+                            name: 'output1',
+                            component: output1,
                             curMenuName:"录入信息维护/我要出力"
 
                         },
