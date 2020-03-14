@@ -34,7 +34,7 @@
             </el-table-column>
             <el-table-column prop="name" label="岗位数">
               <el-table-column prop="newNeedTh" label="新增"></el-table-column>
-              <el-table-column prop="toatlNeedTh" label="累计"></el-table-column>
+              <el-table-column prop="totalNeedTh" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
           <el-table-column label="我有工人">
@@ -44,7 +44,7 @@
             </el-table-column>
             <el-table-column prop="name" label="岗位数">
               <el-table-column prop="newSupportTh" label="新增"></el-table-column>
-              <el-table-column prop="toatlSupportTh" label="累计"></el-table-column>
+              <el-table-column prop="totalSupportTh" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
           <el-table-column label="我要出力">
@@ -54,7 +54,7 @@
             </el-table-column>
             <el-table-column prop="name" label="项目数">
               <el-table-column prop="newServiceTh" label="新增"></el-table-column>
-              <el-table-column prop="totatlServiceTh" label="累计"></el-table-column>
+              <el-table-column prop="totalServiceTh" label="累计"></el-table-column>
             </el-table-column>
           </el-table-column>
           <el-table-column label="平台影响力">

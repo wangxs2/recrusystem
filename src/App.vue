@@ -1,5 +1,6 @@
 <template>
-  <div id="app" @mouseover="OperatingWebsite()">
+  <!-- <div id="app" @mouseover="OperatingWebsite()"> -->
+  <div id="app">
     <router-view></router-view>
   </div>
 </template>
