@@ -226,7 +226,7 @@ export default {
           "累计",
           ''
         ];
-        const filterVal = [ 'date',"newNeed", 'totalNeed', 'newNeedTh', 'toatlNeedTh', 'newSupport', 'totalSupport', 'newSupportTh', 'toatlSupportTh', 'newService','totalService','newServiceTh','totatlServiceTh','newVisit','totalVisit','newLike','totalLike','remark']
+        const filterVal = [ 'date',"newNeed", 'totalNeed', 'newNeedTh', 'totalNeedTh', 'newSupport', 'totalSupport', 'newSupportTh', 'totalSupportTh', 'newService','totalService','newServiceTh','totalServiceTh','newVisit','totalVisit','newLike','totalLike','remark']
         const data = this.formatJson(filterVal, this.tableData);
        //进行所有表头的单元格合并，建议一行一行来，不然容易整乱
         const merges = [
