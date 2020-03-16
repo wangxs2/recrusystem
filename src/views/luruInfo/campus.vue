@@ -125,8 +125,8 @@
     <!-- 查看所需物资弹框 -->
     <el-dialog title="详情" :visible.sync="dialogTableVisible" :close-on-click-modal="false" width="480" center custom-class="look-goods">
       <el-table :data="gridData">
-        <el-table-column property="needsName" label="主要工种"></el-table-column>
-        <el-table-column property="needsNum" label="供应人数"></el-table-column>
+        <el-table-column property="needsName" label="专业名称"></el-table-column>
+        <el-table-column property="needsNum" label="学生人数"></el-table-column>
         <!-- <el-table-column property="" label="物资表述">
             <template slot-scope="scope">
               <span style="color:#4F84FD;cursor:pointer;" @click="clickLookBiao(scope.row)">查看标准</span>
