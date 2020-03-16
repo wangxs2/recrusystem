@@ -429,20 +429,20 @@ export default {
         }
         this.getTableData(this.params)
       }
-      if (searchData1){
-        let x=searchData1
-        this.content=searchData1.content
-        if (searchData1.startDate&&searchData1.endDate){
+      // if (searchData1){
+      //   let x=searchData1
+      //   this.content=searchData1.content
+      //   if (searchData1.startDate&&searchData1.endDate){
 
-          this.startEndTate=[searchData1.startDate,searchData1.endDate]
-        }
-        this.getTableDataExecal(x)
-      } else {
-        let x={
-          materialType:3,
-        }
-        this.getTableDataExecal(x)
-      }
+      //     this.startEndTate=[searchData1.startDate,searchData1.endDate]
+      //   }
+      //   this.getTableDataExecal(x)
+      // } else {
+      //   let x={
+      //     materialType:3,
+      //   }
+      //   this.getTableDataExecal(x)
+      // }
 
 
 
