@@ -24,7 +24,7 @@
 
       </div>
       <div class="table-wrapper">
-        <el-table :data="tableData.slice((page-1)*pageSize,page*pageSize)" :height="curHeight" ref="table" style="width: 100%">
+        <el-table :data="tableData" :height="curHeight" ref="table" style="width: 100%">
           <el-table-column type="index" label="序号" width="50"></el-table-column>
           <el-table-column prop="province" label="省" width="80"></el-table-column>
           <el-table-column prop="city" label="市" width="80"></el-table-column>
@@ -231,10 +231,12 @@ export default {
       })
     },
     handleSizeChange(val) {
+      this.pageSize=val
       this.params.pageSize=val
       this.getTableData(this.params)
     },
     handleCurrentChange(val) {
+      this.page=val
       this.params.page=val
       this.getTableData(this.params)
     },
